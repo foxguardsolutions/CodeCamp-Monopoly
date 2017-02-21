@@ -68,7 +68,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AutoFixtureExtension.cs" />
+    <Compile Include="BaseTests.cs" />
+    <Compile Include="EnumerableExtensionTests.cs" />
+    <Compile Include="PairOfSixSidedDiceTests.cs" />
+    <Compile Include="GameBuilderTests.cs" />
+    <Compile Include="GameTests.cs" />
+    <Compile Include="PlayerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RandomNumberGeneratorTests.cs" />
+    <Compile Include="RollTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -84,6 +93,9 @@
       <Project>{404e5d6b-3422-4d87-a9e1-af518365d22a}</Project>
       <Name>Monopoly</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
