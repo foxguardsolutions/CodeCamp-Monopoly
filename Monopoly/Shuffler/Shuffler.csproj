@@ -44,7 +44,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IShuffler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="FisherYatesShuffler.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
