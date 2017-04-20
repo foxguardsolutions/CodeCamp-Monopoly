@@ -79,6 +79,10 @@
       <Project>{D3DFC952-851B-472D-8B21-8241A0CC9F70}</Project>
       <Name>BoardGame</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Shuffler\Shuffler.csproj">
+      <Project>{5628FDCE-3D9F-4366-B9D7-F226F97DB9C3}</Project>
+      <Name>Shuffler</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Tests.Support\Tests.Support.csproj">
       <Project>{1ff0a837-b081-48e2-a62a-1994dc1970be}</Project>
       <Name>Tests.Support</Name>
