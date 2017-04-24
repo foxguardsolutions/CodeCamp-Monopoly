@@ -60,7 +60,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BoardsTests\DirectedCycleBoardTests.cs" />
+    <Compile Include="BoardsTests\DirectedPathBoardTests.cs" />
+    <Compile Include="ConstructionTests\PlayerFactoryTests.cs" />
+    <Compile Include="ConstructionTests\SingleSpaceInitialPlacementHandlerTests.cs" />
+    <Compile Include="DiceTests\PairOfSixSidedDiceTests.cs" />
+    <Compile Include="ConstructionTests\PlayCoordinatorFactoryTests.cs" />
+    <Compile Include="LocationsTests\PlayerLocationMapTests.cs" />
+    <Compile Include="LocationsTests\PlayerMoverTests.cs" />
+    <Compile Include="RunnerTests.cs" />
+    <Compile Include="PlayTests\PlayCoordinatorTests.cs" />
+    <Compile Include="ConstructionTests\PlayerCountConstraintTests.cs" />
+    <Compile Include="PlayerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="DiceTests\RollTests.cs" />
+    <Compile Include="PlayTests\RoundBasedEndConditionDetectorTests.cs" />
+    <Compile Include="PlayTests\TurnFactoryTests.cs" />
+    <Compile Include="PlayTests\TurnTests.cs" />
+    <Compile Include="SpaceTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />

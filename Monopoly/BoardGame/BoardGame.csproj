@@ -44,7 +44,38 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Boards\DirectedCycleBoard.cs" />
+    <Compile Include="Boards\DirectedPathBoard.cs" />
+    <Compile Include="Boards\IBoard.cs" />
+    <Compile Include="Construction\IPlayCoordinatorFactory.cs" />
+    <Compile Include="Construction\IInitialPlacementHandler.cs" />
+    <Compile Include="Construction\IPlayerFactory.cs" />
+    <Compile Include="Construction\PlayerFactory.cs" />
+    <Compile Include="Construction\SingleSpaceInitialPlacementHandler.cs" />
+    <Compile Include="Dice\PairOfSixSidedDice.cs" />
+    <Compile Include="Extensions\MathExtensions.cs" />
+    <Compile Include="Play\IPlayCoordinator.cs" />
+    <Compile Include="Play\PlayCoordinator.cs" />
+    <Compile Include="Dice\IDice.cs" />
+    <Compile Include="Construction\PlayCoordinatorFactory.cs" />
+    <Compile Include="Play\IEndConditionDetector.cs" />
+    <Compile Include="Dice\IRoll.cs" />
+    <Compile Include="IPlayer.cs" />
+    <Compile Include="Construction\IPlayerCountConstraint.cs" />
+    <Compile Include="Play\ITurnFactory.cs" />
+    <Compile Include="Player.cs" />
+    <Compile Include="Construction\PlayerCountConstraint.cs" />
+    <Compile Include="Locations\IPlayerLocationMap.cs" />
+    <Compile Include="Locations\IPlayerMover.cs" />
+    <Compile Include="Locations\PlayerLocationMap.cs" />
+    <Compile Include="Locations\PlayerMover.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Dice\Roll.cs" />
+    <Compile Include="Play\RoundBasedEndConditionDetector.cs" />
+    <Compile Include="Runner.cs" />
+    <Compile Include="Play\Turn.cs" />
+    <Compile Include="Play\TurnFactory.cs" />
+    <Compile Include="Space.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -60,6 +91,7 @@
       <Name>Shuffler</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
