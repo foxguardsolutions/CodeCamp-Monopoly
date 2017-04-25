@@ -51,6 +51,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ContainerFactory.cs" />
+    <Compile Include="MonopolyModule.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -67,6 +69,10 @@
     <ProjectReference Include="..\BoardGame\BoardGame.csproj">
       <Project>{d3dfc952-851b-472d-8b21-8241a0cc9f70}</Project>
       <Name>BoardGame</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Shuffler\Shuffler.csproj">
+      <Project>{5628FDCE-3D9F-4366-B9D7-F226F97DB9C3}</Project>
+      <Name>Shuffler</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

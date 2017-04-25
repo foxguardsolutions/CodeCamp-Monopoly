@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DependencyInjectionContainerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -61,6 +62,20 @@
     <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.0\analyzers\dotnet\cs\Newtonsoft.Json.dll" />
     <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.0\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
     <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.0\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BoardGame\BoardGame.csproj">
+      <Project>{D3DFC952-851B-472D-8B21-8241A0CC9F70}</Project>
+      <Name>BoardGame</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Monopoly\Monopoly.csproj">
+      <Project>{D2D86EB2-5933-422B-A2A8-F7B6B9303B8B}</Project>
+      <Name>Monopoly</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Shuffler\Shuffler.csproj">
+      <Project>{5628FDCE-3D9F-4366-B9D7-F226F97DB9C3}</Project>
+      <Name>Shuffler</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
