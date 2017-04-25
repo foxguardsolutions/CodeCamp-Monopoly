@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shuffler", "Shuffler\Shuffl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shuffler.Tests", "Shuffler.Tests\Shuffler.Tests.csproj", "{E272D52B-D68F-4F11-8071-6E8F2CA6DA59}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Monopoly", "Monopoly\Monopoly.csproj", "{D2D86EB2-5933-422B-A2A8-F7B6B9303B8B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Monopoly.Tests", "Monopoly.Tests\Monopoly.Tests.csproj", "{22E8DFB6-0F94-420E-86D3-9F9E27368813}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,14 @@ Global
 		{E272D52B-D68F-4F11-8071-6E8F2CA6DA59}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E272D52B-D68F-4F11-8071-6E8F2CA6DA59}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E272D52B-D68F-4F11-8071-6E8F2CA6DA59}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2D86EB2-5933-422B-A2A8-F7B6B9303B8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2D86EB2-5933-422B-A2A8-F7B6B9303B8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2D86EB2-5933-422B-A2A8-F7B6B9303B8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2D86EB2-5933-422B-A2A8-F7B6B9303B8B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22E8DFB6-0F94-420E-86D3-9F9E27368813}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22E8DFB6-0F94-420E-86D3-9F9E27368813}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22E8DFB6-0F94-420E-86D3-9F9E27368813}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22E8DFB6-0F94-420E-86D3-9F9E27368813}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
