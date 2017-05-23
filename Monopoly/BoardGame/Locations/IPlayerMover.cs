@@ -2,7 +2,7 @@
 {
     public interface IPlayerMover
     {
-        void Move(IPlayer player, ushort spacesToMove);
-        void Place(IPlayer player, Space space);
+        ISpace Move(IPlayer player, ushort spacesToMove);
+        void Place(IPlayer player, ISpace space);
     }
 }

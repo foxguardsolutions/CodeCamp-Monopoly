@@ -1,12 +1,15 @@
-﻿namespace BoardGame
-{
-    public class Space
-    {
-        public uint Number { get; }
+﻿using BoardGame.Commands.Factories;
 
-        public Space(uint number)
+namespace BoardGame
+{
+    public class Space : ISpace
+    {
+        public ICommandFactory CommandFactory { get; set; }
+        public string Name { get; }
+
+        public Space(string name)
         {
-            Number = number;
+            Name = name;
         }
     }
 }

@@ -1,22 +1,19 @@
-﻿using BoardGame.Dice;
-using BoardGame.Locations;
+﻿using BoardGame.Commands;
 
 namespace BoardGame.Play
 {
     public class TurnFactory : ITurnFactory
     {
-        private readonly IDice _dice;
-        private readonly IPlayerMover _playerMover;
+        private readonly ICommandQueue _commandQueue;
 
-        public TurnFactory(IDice dice, IPlayerMover playerMover)
+        public TurnFactory(ICommandQueue commandQueue)
         {
-            _dice = dice;
-            _playerMover = playerMover;
+            _commandQueue = commandQueue;
         }
 
-        public Turn Create(IPlayer player)
+        public Turn CreateFor(IPlayer player)
         {
-            return new Turn(player, _dice, _playerMover);
+            return new Turn(player, _commandQueue);
         }
     }
 }

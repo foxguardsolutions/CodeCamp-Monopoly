@@ -44,11 +44,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\ICommandQueue.cs" />
+    <Compile Include="Commands\MoveCommand.cs" />
+    <Compile Include="Commands\Command.cs" />
+    <Compile Include="Commands\ICommand.cs" />
+    <Compile Include="Commands\Factories\ICommandFactory.cs" />
+    <Compile Include="Commands\RollAndMoveCommand.cs" />
     <Compile Include="Boards\DirectedCycleBoard.cs" />
     <Compile Include="Boards\DirectedPathBoard.cs" />
     <Compile Include="Boards\IBoard.cs" />
     <Compile Include="Construction\IGameStateConfigurationInitializer.cs" />
     <Compile Include="Construction\GameStateConfigurationInitializer.cs" />
+    <Compile Include="Commands\SelfExtendingCommandQueue.cs" />
     <Compile Include="Construction\IPlayCoordinatorFactory.cs" />
     <Compile Include="Construction\IInitialPlacementHandler.cs" />
     <Compile Include="Construction\IPlayerFactory.cs" />
@@ -56,6 +63,7 @@
     <Compile Include="Construction\SingleSpaceInitialPlacementHandler.cs" />
     <Compile Include="Dice\PairOfSixSidedDice.cs" />
     <Compile Include="Extensions\MathExtensions.cs" />
+    <Compile Include="ISpace.cs" />
     <Compile Include="Money\Account.cs" />
     <Compile Include="Money\AccountFactory.cs" />
     <Compile Include="Money\AccountRegistry.cs" />

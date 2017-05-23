@@ -4,10 +4,10 @@ namespace BoardGame.Construction
 {
     public class SingleSpaceInitialPlacementHandler : IInitialPlacementHandler
     {
-        private readonly Space _initialSpace;
+        private readonly ISpace _initialSpace;
         private readonly IPlayerMover _playerMover;
 
-        public SingleSpaceInitialPlacementHandler(Space initialSpace, IPlayerMover playerMover)
+        public SingleSpaceInitialPlacementHandler(ISpace initialSpace, IPlayerMover playerMover)
         {
             _initialSpace = initialSpace;
             _playerMover = playerMover;

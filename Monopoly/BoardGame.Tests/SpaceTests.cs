@@ -1,4 +1,6 @@
-﻿using NUnit.Framework;
+﻿using BoardGame.Commands.Factories;
+
+using NUnit.Framework;
 using Ploeh.AutoFixture;
 
 using Tests.Support;
@@ -7,13 +9,31 @@ namespace BoardGame.Tests
 {
     public class SpaceTests : BaseTest
     {
-        [Test]
-        public void Number_ReturnsSpaceNumber()
-        {
-            var spaceNumber = Fixture.Freeze<uint>();
-            var space = Fixture.Create<Space>();
+        private string _spaceName;
+        private Space _space;
+        private ICommandFactory _commandFactory;
 
-            Assert.That(space, Has.Property(nameof(Space.Number)).EqualTo(spaceNumber));
+        [SetUp]
+        public void SetUp()
+        {
+            _spaceName = Fixture.Freeze<string>();
+            _space = Fixture.Create<Space>();
+
+            _commandFactory = Fixture.Create<ICommandFactory>();
+        }
+
+        [Test]
+        public void Name_ReturnsSpaceName()
+        {
+            Assert.That(_space, Has.Property(nameof(_space.Name)).EqualTo(_spaceName));
+        }
+
+        [Test]
+        public void GetCommandFactory_GivenCommandFactorySet_ReturnsCommandFactory()
+        {
+            _space.CommandFactory = _commandFactory;
+
+            Assert.That(_space, Has.Property(nameof(_space.CommandFactory)).EqualTo(_commandFactory));
         }
     }
 }

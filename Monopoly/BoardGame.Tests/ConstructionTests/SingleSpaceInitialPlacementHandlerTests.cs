@@ -12,7 +12,7 @@ namespace BoardGame.Tests.ConstructionTests
 {
     public class SingleSpaceInitialPlacementHandlerTests : BaseTest
     {
-        private Space _initialSpace;
+        private ISpace _initialSpace;
         private Mock<IPlayerMover> _mockPlayerMover;
         private IPlayer _player;
 
@@ -21,7 +21,7 @@ namespace BoardGame.Tests.ConstructionTests
         [SetUp]
         public void SetUp()
         {
-            _initialSpace = Fixture.Freeze<Space>();
+            _initialSpace = Fixture.Freeze<ISpace>();
             _mockPlayerMover = Fixture.Mock<IPlayerMover>();
             _initialPlacementHandler = Fixture.Create<SingleSpaceInitialPlacementHandler>();
 

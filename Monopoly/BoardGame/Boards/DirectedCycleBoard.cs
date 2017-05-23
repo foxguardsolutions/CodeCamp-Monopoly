@@ -5,7 +5,7 @@ namespace BoardGame.Boards
 {
     public class DirectedCycleBoard : DirectedPathBoard
     {
-        public DirectedCycleBoard(IEnumerable<Space> spaces)
+        public DirectedCycleBoard(IEnumerable<ISpace> spaces)
             : base(spaces)
         {
         }

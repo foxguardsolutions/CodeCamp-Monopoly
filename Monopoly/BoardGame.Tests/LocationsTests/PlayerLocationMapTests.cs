@@ -14,7 +14,7 @@ namespace BoardGame.Tests.LocationsTests
         {
             var map = Fixture.Create<PlayerLocationMap>();
             var player = Fixture.Create<IPlayer>();
-            var initialSpace = Fixture.Create<Space>();
+            var initialSpace = Fixture.Create<ISpace>();
 
             map.SetLocation(player, initialSpace);
             var playerLocation = map.Locate(player);

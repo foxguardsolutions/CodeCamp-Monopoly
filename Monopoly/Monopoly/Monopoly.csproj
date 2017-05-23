@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\Factories\TurnInitializationCommandFactory.cs" />
     <Compile Include="ContainerFactory.cs" />
     <Compile Include="MonopolyModule.cs" />
     <Compile Include="Program.cs" />

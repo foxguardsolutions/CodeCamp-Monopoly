@@ -63,6 +63,10 @@
     <Compile Include="BoardsTests\DirectedCycleBoardTests.cs" />
     <Compile Include="BoardsTests\DirectedPathBoardTests.cs" />
     <Compile Include="ConstructionTests\GameStateConfigurationInitializerTests.cs" />
+    <Compile Include="CommandsTests\FactoriesTests\RollAndMoveCommandFactoryTests.cs" />
+    <Compile Include="CommandsTests\MoveCommandTests.cs" />
+    <Compile Include="CommandsTests\RollAndMoveCommandTests.cs" />
+    <Compile Include="CommandsTests\SelfExtendingCommandQueueTests.cs" />
     <Compile Include="ConstructionTests\PlayerFactoryTests.cs" />
     <Compile Include="ConstructionTests\SingleSpaceInitialPlacementHandlerTests.cs" />
     <Compile Include="DiceTests\PairOfSixSidedDiceTests.cs" />

@@ -6,14 +6,14 @@ namespace BoardGame.Boards
     public abstract class DirectedPathBoard : IBoard
     {
         protected uint TotalSpaces => (uint)_spaces.Count;
-        private readonly IList<Space> _spaces;
+        private readonly IList<ISpace> _spaces;
 
-        protected DirectedPathBoard(IEnumerable<Space> spaces)
+        protected DirectedPathBoard(IEnumerable<ISpace> spaces)
         {
             _spaces = spaces.ToList();
         }
 
-        public Space GetOffsetSpace(Space initialSpace, int offset)
+        public ISpace GetOffsetSpace(ISpace initialSpace, int offset)
         {
             var initialSpaceIndex = _spaces.IndexOf(initialSpace);
             var finalSpaceIndex = GetOffsetSpaceIndex((uint)initialSpaceIndex, offset);

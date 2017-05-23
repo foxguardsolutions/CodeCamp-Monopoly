@@ -4,19 +4,19 @@ namespace BoardGame.Locations
 {
     public class PlayerLocationMap : IPlayerLocationMap
     {
-        private readonly IDictionary<IPlayer, Space> _playerLocations;
+        private readonly IDictionary<IPlayer, ISpace> _playerLocations;
 
         public PlayerLocationMap()
         {
-            _playerLocations = new Dictionary<IPlayer, Space>();
+            _playerLocations = new Dictionary<IPlayer, ISpace>();
         }
 
-        public Space Locate(IPlayer player)
+        public ISpace Locate(IPlayer player)
         {
             return _playerLocations[player];
         }
 
-        public void SetLocation(IPlayer player, Space space)
+        public void SetLocation(IPlayer player, ISpace space)
         {
             _playerLocations[player] = space;
         }
