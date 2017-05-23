@@ -1,9 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+
 using BoardGame.Dice;
+
 using Moq;
 using NUnit.Framework;
 using Ploeh.AutoFixture;
+
 using Shuffler;
 using Tests.Support;
 using Tests.Support.Extensions;

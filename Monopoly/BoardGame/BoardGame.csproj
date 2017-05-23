@@ -47,6 +47,8 @@
     <Compile Include="Boards\DirectedCycleBoard.cs" />
     <Compile Include="Boards\DirectedPathBoard.cs" />
     <Compile Include="Boards\IBoard.cs" />
+    <Compile Include="Construction\IGameStateConfigurationInitializer.cs" />
+    <Compile Include="Construction\GameStateConfigurationInitializer.cs" />
     <Compile Include="Construction\IPlayCoordinatorFactory.cs" />
     <Compile Include="Construction\IInitialPlacementHandler.cs" />
     <Compile Include="Construction\IPlayerFactory.cs" />
@@ -54,6 +56,15 @@
     <Compile Include="Construction\SingleSpaceInitialPlacementHandler.cs" />
     <Compile Include="Dice\PairOfSixSidedDice.cs" />
     <Compile Include="Extensions\MathExtensions.cs" />
+    <Compile Include="Money\Account.cs" />
+    <Compile Include="Money\AccountFactory.cs" />
+    <Compile Include="Money\AccountRegistry.cs" />
+    <Compile Include="Money\FixedBalanceModification.cs" />
+    <Compile Include="Money\IAccount.cs" />
+    <Compile Include="Money\IAccountFactory.cs" />
+    <Compile Include="Money\IAccountRegistry.cs" />
+    <Compile Include="Money\IBalanceModification.cs" />
+    <Compile Include="Money\ProportionalPenaltyWithCap.cs" />
     <Compile Include="Play\IPlayCoordinator.cs" />
     <Compile Include="Play\PlayCoordinator.cs" />
     <Compile Include="Dice\IDice.cs" />

@@ -16,14 +16,14 @@ namespace BoardGame.Tests.ConstructionTests
     {
         private IEnumerable<IPlayer> _players;
         private Mock<IShuffler> _mockPlayerShuffler;
-        private Mock<IInitialPlacementHandler> _mockInitialPlacementHandler;
+        private Mock<IGameStateConfigurationInitializer> _mockConfigurationInitializer;
 
         [SetUp]
         public void SetUp()
         {
             _players = Fixture.CreateMany<IPlayer>();
             _mockPlayerShuffler = GivenMockShuffler();
-            _mockInitialPlacementHandler = Fixture.Mock<IInitialPlacementHandler>();
+            _mockConfigurationInitializer = Fixture.Mock<IGameStateConfigurationInitializer>();
         }
 
         private Mock<IShuffler> GivenMockShuffler()
@@ -42,7 +42,7 @@ namespace BoardGame.Tests.ConstructionTests
             var newPlayerCoordinator = factory.Create(_players);
 
             Assert.That(newPlayerCoordinator, Is.Null);
-            _mockInitialPlacementHandler.Verify(i => i.Place(It.IsAny<IPlayer>()), Times.Never);
+            _mockConfigurationInitializer.Verify(g => g.ConfigureGame(It.IsAny<IEnumerable<IPlayer>>()), Times.Never);
         }
 
         [Test]
@@ -53,7 +53,7 @@ namespace BoardGame.Tests.ConstructionTests
 
             factory.Create(_players);
             _mockPlayerShuffler.Verify(p => p.Shuffle(_players));
-            VerifyAllPlayersArePlaced(_mockInitialPlacementHandler, _players);
+            _mockConfigurationInitializer.Verify(g => g.ConfigureGame(_players));
         }
 
         private IPlayerCountConstraint GivenConstraintNotSatisfiedBy(IEnumerable<IPlayer> players)
@@ -76,13 +76,6 @@ namespace BoardGame.Tests.ConstructionTests
         private PlayCoordinatorFactory GivenPlayerCoordinatorFactoryWithConstraint(IPlayerCountConstraint constraint)
         {
             return Fixture.Create<PlayCoordinatorFactory>();
-        }
-
-        private static void VerifyAllPlayersArePlaced(
-            Mock<IInitialPlacementHandler> mockInitialPlacementHandler, IEnumerable<IPlayer> players)
-        {
-            foreach (var player in players)
-                mockInitialPlacementHandler.Verify(i => i.Place(player));
         }
     }
 }
