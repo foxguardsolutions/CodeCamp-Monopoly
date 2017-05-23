@@ -63,14 +63,22 @@
     <Compile Include="BoardsTests\DirectedCycleBoardTests.cs" />
     <Compile Include="BoardsTests\DirectedPathBoardTests.cs" />
     <Compile Include="ConstructionTests\GameStateConfigurationInitializerTests.cs" />
+    <Compile Include="CommandsTests\FactoriesTests\BalanceModificationCommandFactoryTests.cs" />
+    <Compile Include="CommandsTests\FactoriesTests\MoveDirectlyToSpaceCommandFactoryTests.cs" />
+    <Compile Include="CommandsTests\FactoriesTests\CompletedLapsRewardingCommandFactoryDecoratorTests.cs" />
     <Compile Include="CommandsTests\FactoriesTests\RollAndMoveCommandFactoryTests.cs" />
     <Compile Include="CommandsTests\MoveCommandTests.cs" />
+    <Compile Include="CommandsTests\MoveDirectlyToSpaceCommandTests.cs" />
     <Compile Include="CommandsTests\RollAndMoveCommandTests.cs" />
+    <Compile Include="CommandsTests\CompletedLapsRewardingCommandDecoratorTests.cs" />
     <Compile Include="CommandsTests\SelfExtendingCommandQueueTests.cs" />
+    <Compile Include="CommandsTests\UpdatePlayerBalanceCommandTests.cs" />
     <Compile Include="ConstructionTests\PlayerFactoryTests.cs" />
     <Compile Include="ConstructionTests\SingleSpaceInitialPlacementHandlerTests.cs" />
+    <Compile Include="ConstructionTests\SpaceCommandFactoryBinderTests.cs" />
     <Compile Include="DiceTests\PairOfSixSidedDiceTests.cs" />
     <Compile Include="ConstructionTests\PlayCoordinatorFactoryTests.cs" />
+    <Compile Include="BoardsTests\LapCounterTests.cs" />
     <Compile Include="LocationsTests\PlayerLocationMapTests.cs" />
     <Compile Include="LocationsTests\PlayerMoverTests.cs" />
     <Compile Include="MoneyTests\AccountFactoryTests.cs" />
@@ -115,6 +123,7 @@
       <Name>Tests.Support</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -1,10 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace BoardGame.Boards
 {
-    public abstract class DirectedPathBoard : IBoard
+    public abstract class DirectedPathBoard : IBoardWithEnd
     {
+        public abstract event EventHandler CrossedEndOfBoard;
+
         protected uint TotalSpaces => (uint)_spaces.Count;
         private readonly IList<ISpace> _spaces;
 
@@ -22,8 +25,10 @@ namespace BoardGame.Boards
 
         private uint GetOffsetSpaceIndex(uint initialSpaceIndex, int offset)
         {
-            if (CrossesBeginningOfBoard(initialSpaceIndex, offset) || CrossesEndOfBoard(initialSpaceIndex, offset))
-                return GetSpaceIndexWhenCrossingBoardBoundary(initialSpaceIndex, offset);
+            if (CrossesBeginningOfBoard(initialSpaceIndex, offset))
+                return GetSpaceIndexWhenCrossingBeginningOfBoard(initialSpaceIndex, offset);
+            if (CrossesEndOfBoard(initialSpaceIndex, offset))
+                return GetSpaceIndexWhenCrossingEndOfBoard(initialSpaceIndex, offset);
             return (uint)(initialSpaceIndex + offset);
         }
 
@@ -37,6 +42,7 @@ namespace BoardGame.Boards
             return initialSpaceIndex + offset >= TotalSpaces;
         }
 
-        protected abstract uint GetSpaceIndexWhenCrossingBoardBoundary(uint initialSpaceIndex, int offset);
+        protected abstract uint GetSpaceIndexWhenCrossingBeginningOfBoard(uint initialSpaceIndex, int offset);
+        protected abstract uint GetSpaceIndexWhenCrossingEndOfBoard(uint initialSpaceIndex, int offset);
     }
 }

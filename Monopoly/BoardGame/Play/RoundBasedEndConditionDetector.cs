@@ -22,9 +22,6 @@ namespace BoardGame.Play
             playCoordinator.RoundCompleted += OnRoundComplete;
         }
 
-        private void OnRoundComplete(object sender, EventArgs eventArgs)
-        {
-            _roundsComplete++;
-        }
+        private void OnRoundComplete(object sender, EventArgs args) => _roundsComplete++;
     }
 }

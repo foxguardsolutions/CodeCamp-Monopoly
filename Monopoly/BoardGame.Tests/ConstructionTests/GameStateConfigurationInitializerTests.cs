@@ -17,7 +17,8 @@ namespace BoardGame.Tests.ConstructionTests
         private IEnumerable<IPlayer> _players;
         private Mock<IInitialPlacementHandler> _mockInitialPlacementHandler;
         private Mock<IAccountRegistry> _mockAccountRegistry;
-        private InitialGameStateConfigurator _configurator;
+        private Mock<ISpaceCommandFactoryBinder> _mockSpaceCommandFactoryBinder;
+        private GameStateConfigurationInitializer _configurationInitializer;
 
         [SetUp]
         public void SetUp()
@@ -26,17 +27,19 @@ namespace BoardGame.Tests.ConstructionTests
 
             _mockInitialPlacementHandler = Fixture.Mock<IInitialPlacementHandler>();
             _mockAccountRegistry = Fixture.Mock<IAccountRegistry>();
+            _mockSpaceCommandFactoryBinder = Fixture.Mock<ISpaceCommandFactoryBinder>();
 
             _configurationInitializer = Fixture.Create<GameStateConfigurationInitializer>();
         }
 
         [Test]
-        public void ConfigureGame_GivenPlayers_PlacesPlayersOnBoardRegistersAccountsAndBindsStrategiesToSpaces()
+        public void ConfigureGame_GivenPlayers_PlacesPlayersOnBoardRegistersAccountsAndBindsCommandFactoriesToSpaces()
         {
             _configurationInitializer.ConfigureGame(_players);
 
             VerifyAllPlayersArePlaced(_mockInitialPlacementHandler, _players);
             VerifyAllPlayersHaveAccountsRegistered(_mockAccountRegistry, _players);
+            _mockSpaceCommandFactoryBinder.Verify(s => s.BindCommandFactoriesToSpaces());
         }
 
         private static void VerifyAllPlayersArePlaced(

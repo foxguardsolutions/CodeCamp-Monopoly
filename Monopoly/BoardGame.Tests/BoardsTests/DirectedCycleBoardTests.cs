@@ -41,6 +41,19 @@ namespace BoardGame.Tests.BoardsTests
             Assert.That(Spaces.IndexOf(nextSpace), Is.EqualTo(expectedFinalSpaceIndex));
         }
 
+        [Test]
+        public void GetOffsetSpace_GivenOffsetThatLandsAfterHighestSpaceOnBoard_RaisesCrossedEndOfBoardEventForEachLapCompleted()
+        {
+            var offset = GivenOffsetThatLandsAfterHighestSpaceOnBoard();
+            var lapsCompleted = 0;
+            Board.CrossedEndOfBoard += (sender, args) => lapsCompleted++;
+            var expectedLapsCompleted = (InitialSpaceIndex + offset) / TotalSpaces;
+
+            Board.GetOffsetSpace(InitialSpace, offset);
+
+            Assert.That(lapsCompleted, Is.EqualTo(expectedLapsCompleted));
+        }
+
         private int GivenOffsetThatLandsAfterHighestSpaceOnBoard()
         {
             var largestOffsetNotCrossingEndOfBoard = HighestSpaceIndex - InitialSpaceIndex;
