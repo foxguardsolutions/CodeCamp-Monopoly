@@ -41,7 +41,7 @@ namespace BoardGame.Tests.PlayTests
         private Mock<ITurnFactory> GivenMockTurnFactory()
         {
             var mockTurnFactory = Fixture.Mock<ITurnFactory>();
-            mockTurnFactory.Setup(t => t.Create(It.IsAny<IPlayer>()))
+            mockTurnFactory.Setup(t => t.CreateFor(It.IsAny<IPlayer>()))
                 .Returns(Fixture.Create<Turn>());
             return mockTurnFactory;
         }
@@ -127,7 +127,7 @@ namespace BoardGame.Tests.PlayTests
         private void VerifyTurnsWereTakenForEach(IEnumerable<IPlayer> players, Times times)
         {
             foreach (var player in players)
-                _mockTurnFactory.Verify(t => t.Create(player), times);
+                _mockTurnFactory.Verify(t => t.CreateFor(player), times);
         }
 
         [Test]
@@ -153,7 +153,7 @@ namespace BoardGame.Tests.PlayTests
         private void LogAName(ICollection<string> log, IPlayer player)
         {
             var name = Fixture.Create<string>();
-            _mockTurnFactory.Setup(t => t.Create(player))
+            _mockTurnFactory.Setup(t => t.CreateFor(player))
                 .Callback(() => log.Add(name))
                 .Returns(Fixture.Create<Turn>());
         }

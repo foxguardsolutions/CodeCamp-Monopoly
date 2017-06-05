@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+
 using BoardGame.Boards;
 
 using NUnit.Framework;
@@ -14,8 +15,8 @@ namespace BoardGame.Tests.BoardsTests
     {
         protected DirectedPathBoard Board { get; set; }
 
-        protected IList<Space> Spaces { get; private set; }
-        protected Space InitialSpace { get; private set; }
+        protected IList<ISpace> Spaces { get; private set; }
+        protected ISpace InitialSpace { get; private set; }
 
         protected uint InitialSpaceIndex { get; private set; }
         protected uint TotalSpaces { get; private set; }
@@ -34,9 +35,9 @@ namespace BoardGame.Tests.BoardsTests
             GivenBoard();
         }
 
-        private IList<Space> GivenSpaces()
+        private IList<ISpace> GivenSpaces()
         {
-            var spaces = Fixture.CreateMany<Space>();
+            var spaces = Fixture.CreateMany<ISpace>();
             Fixture.Register(() => spaces);
             return spaces.ToList();
         }

@@ -34,8 +34,8 @@ namespace BoardGame.Play
 
         private void TakeATurn(IPlayer player)
         {
-            var turn = _turnFactory.Create(player);
-            turn.Execute();
+            var turn = _turnFactory.CreateFor(player);
+            turn.Complete();
         }
     }
 }

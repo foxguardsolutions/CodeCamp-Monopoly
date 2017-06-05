@@ -13,14 +13,15 @@ namespace BoardGame.Locations
             _board = board;
         }
 
-        public void Move(IPlayer player, ushort spacesToMove)
+        public ISpace Move(IPlayer player, ushort spacesToMove)
         {
             var initialSpace = _map.Locate(player);
             var finalSpace = _board.GetOffsetSpace(initialSpace, spacesToMove);
             Place(player, finalSpace);
+            return finalSpace;
         }
 
-        public void Place(IPlayer player, Space space)
+        public void Place(IPlayer player, ISpace space)
         {
             _map.SetLocation(player, space);
         }

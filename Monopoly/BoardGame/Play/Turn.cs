@@ -1,25 +1,22 @@
-﻿using BoardGame.Dice;
-using BoardGame.Locations;
+﻿using BoardGame.Commands;
 
 namespace BoardGame.Play
 {
     public class Turn
     {
         private readonly IPlayer _player;
-        private readonly IDice _dice;
-        private readonly IPlayerMover _playerMover;
+        private readonly ICommandQueue _commandQueue;
 
-        public Turn(IPlayer player, IDice dice, IPlayerMover playerMover)
+        public Turn(IPlayer player, ICommandQueue commandQueue)
         {
             _player = player;
-            _dice = dice;
-            _playerMover = playerMover;
+            _commandQueue = commandQueue;
         }
 
-        public void Execute()
+        public void Complete()
         {
-            var roll = _dice.Roll();
-            _playerMover.Move(_player, roll.Value);
+            _commandQueue.InitializeFor(_player);
+            _commandQueue.ExecuteCommands();
         }
     }
 }

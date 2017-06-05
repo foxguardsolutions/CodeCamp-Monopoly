@@ -2,6 +2,6 @@
 {
     public interface ITurnFactory
     {
-        Turn Create(IPlayer player);
+        Turn CreateFor(IPlayer player);
     }
 }

@@ -1,53 +1,128 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+
 using Autofac;
 using Autofac.Core;
 
 using BoardGame;
 using BoardGame.Boards;
+using BoardGame.Commands;
+using BoardGame.Commands.Factories;
 using BoardGame.Construction;
 using BoardGame.Dice;
 using BoardGame.Locations;
+using BoardGame.Money;
 using BoardGame.Play;
+using Monopoly.Commands.Factories;
+using Monopoly.Construction;
 using Shuffler;
 
 namespace Monopoly
 {
     public class MonopolyModule : Module
     {
-        public const int NumberOfSpaces = 40;
         public const int StartingSpaceIndex = 0;
         private const uint MinimumPlayerCount = 2;
-        private const uint MaximumPlayerCount = 2;
+        private const uint MaximumPlayerCount = 8;
         private const int TotalRoundsInAGame = 20;
+        private const int StandardInitialBalance = 200;
+        private const int RewardForPassingGo = 200;
+        private const string TurnInitializationCommandFactoryKey = "turn initialization command factory";
 
         protected override void Load(ContainerBuilder builder)
         {
-            LoadGameComponents(builder);
-            LoadGameConstructionUtilities(builder);
+            LoadBoard(builder);
+            LoadCommands(builder);
+            LoadConstructionServices(builder);
+            LoadDice(builder);
+            LoadLocationServices(builder);
+            LoadAccountServices(builder);
+            LoadPlayServices(builder);
+            LoadSpaces(builder);
+
             builder.RegisterType<Runner>().AsSelf();
         }
 
-        private static void LoadGameComponents(ContainerBuilder builder)
+        private static void LoadBoard(ContainerBuilder builder)
         {
-            LoadGameInitializationComponents(builder);
-            LoadPlayerMovementAndLocationComponents(builder);
-            LoadEndConditionDetector(builder);
-            LoadTurnTakingComponents(builder);
+            builder.RegisterType<DirectedCycleBoard>().As<IBoardWithEnd>().InstancePerLifetimeScope();
+            builder.Register(context => context.Resolve<IBoardWithEnd>()).As<IBoard>();
         }
 
-        private static void LoadGameInitializationComponents(ContainerBuilder builder)
+        private static void LoadCommands(ContainerBuilder builder)
         {
+            LoadMonopolySpecificCommands(builder);
+            LoadGeneralCommands(builder);
+            builder.RegisterType<SelfExtendingCommandQueue>().As<ICommandQueue>().WithParameter(
+                new ResolvedParameter(
+                    (parameters, context) => parameters.ParameterType == typeof(ICommandFactory),
+                    (parameters, context) => context.ResolveKeyed<ICommandFactory>(TurnInitializationCommandFactoryKey)));
+        }
+
+        private static void LoadMonopolySpecificCommands(ContainerBuilder builder)
+        {
+            LoadSpaceStrategies(builder);
+            LoadTurnInitializationCommandFactory(builder);
+        }
+
+        private static void LoadSpaceStrategies(ContainerBuilder builder)
+        {
+            builder.RegisterType<IncomeTaxCommandFactory>().AsSelf();
+            var goToJailParameter = new ResolvedParameter(
+                (parameters, context) => parameters.Name == "space",
+                (parameters, context) => context.Resolve<IEnumerable<ISpace>>()
+                    .Skip(GoToJailCommandFactory.JustVisitingSpaceIndex).First());
+            builder.RegisterType<GoToJailCommandFactory>().AsSelf()
+                .WithParameter(goToJailParameter);
+            builder.RegisterType<LuxuryTaxCommandFactory>().AsSelf();
+        }
+
+        private static void LoadTurnInitializationCommandFactory(ContainerBuilder builder)
+        {
+            var rollAndMoveParameter = new ResolvedParameter(
+                (parameters, context) => parameters.Name == "decoratedCommandFactory",
+                (parameters, context) => context.Resolve<RollAndMoveCommandFactory>());
+
+            var rewardValueParameter = new NamedParameter("balanceModificationValue", RewardForPassingGo);
+            var rewardParameter = new ResolvedParameter(
+                (parameters, context) => parameters.Name == "balanceModification",
+                (parameters, context) => context.Resolve<FixedBalanceModification>(rewardValueParameter));
+            var rewardCommandFactoryParameter = new ResolvedParameter(
+                (parameters, context) => parameters.Name == "lapRewardCommandFactory",
+                (parameters, context) => context.Resolve<BalanceModificationCommandFactory>(rewardParameter));
+
+            builder.RegisterType<CompletedLapsRewardingCommandFactoryDecorator>()
+                .As<ICommandFactory>()
+                .WithParameter(rollAndMoveParameter)
+                .WithParameter(rewardCommandFactoryParameter)
+                .Keyed<ICommandFactory>(TurnInitializationCommandFactoryKey);
+        }
+
+        private static void LoadGeneralCommands(ContainerBuilder builder)
+        {
+            builder.RegisterType<BalanceModificationCommandFactory>().AsSelf();
+            builder.RegisterType<CompletedLapsRewardingCommandFactoryDecorator>().AsSelf();
+            builder.RegisterType<RollAndMoveCommandFactory>().AsSelf();
+        }
+
+        private static void LoadConstructionServices(ContainerBuilder builder)
+        {
+            builder.RegisterType<GameStateConfigurationInitializer>().As<IGameStateConfigurationInitializer>();
+
+            var initialSpaceParameter = new ResolvedParameter(
+                (parameters, context) => parameters.ParameterType == typeof(ISpace),
+                (parameters, context) => context.Resolve<IEnumerable<ISpace>>().Skip(StartingSpaceIndex).First());
+            builder.RegisterType<SingleSpaceInitialPlacementHandler>().As<IInitialPlacementHandler>()
+                .WithParameter(initialSpaceParameter);
+
             builder.RegisterType<PlayerCountConstraint>().As<IPlayerCountConstraint>()
                 .WithParameters(PlayerCountConstraintParameters());
 
-            var gameSpaces = Spaces(NumberOfSpaces).ToList();
-            builder.Register(context => gameSpaces[StartingSpaceIndex]).As<Space>();
-            builder.RegisterType<SingleSpaceInitialPlacementHandler>().As<IInitialPlacementHandler>();
+            builder.RegisterType<PlayCoordinatorFactory>().As<IPlayCoordinatorFactory>();
+            builder.RegisterType<PlayerFactory>().As<IPlayerFactory>();
 
-            builder.Register(context => gameSpaces).As<IEnumerable<Space>>();
-            builder.RegisterType<DirectedCycleBoard>().As<IBoard>();
+            builder.RegisterType<MonopolySpaceCommandFactoryBinder>().As<ISpaceCommandFactoryBinder>();
         }
 
         private static IEnumerable<Parameter> PlayerCountConstraintParameters()
@@ -56,42 +131,42 @@ namespace Monopoly
             yield return new NamedParameter("maximumPlayerCount", MaximumPlayerCount);
         }
 
-        private static IEnumerable<Space> Spaces(int count)
+        private static void LoadDice(ContainerBuilder builder)
         {
-            for (uint spaceNumber = 0; spaceNumber < count; spaceNumber++)
-                yield return new Space(spaceNumber);
+            builder.RegisterType<Random>().AsSelf();
+            builder.RegisterType<FisherYatesShuffler>().As<IShuffler>();
+
+            builder.RegisterType<PairOfSixSidedDice>().As<IDice>();
         }
 
-        private static void LoadPlayerMovementAndLocationComponents(ContainerBuilder builder)
+        private static void LoadLocationServices(ContainerBuilder builder)
         {
+            builder.RegisterType<LapCounter>().As<ILapCounter>();
             builder.RegisterType<PlayerLocationMap>().As<IPlayerLocationMap>();
-            builder.RegisterType<PlayerMover>().As<IPlayerMover>();
+            builder.RegisterType<PlayerMover>().As<IPlayerMover>().InstancePerLifetimeScope();
         }
 
-        private static void LoadEndConditionDetector(ContainerBuilder builder)
+        private static void LoadAccountServices(ContainerBuilder builder)
         {
+            builder.Register<IAccountFactory>(context => new AccountFactory(StandardInitialBalance));
+            builder.RegisterType<AccountRegistry>().As<IAccountRegistry>().InstancePerLifetimeScope();
+            builder.RegisterType<FixedBalanceModification>().AsSelf();
+        }
+
+        private static void LoadPlayServices(ContainerBuilder builder)
+        {
+            builder.RegisterType<TurnFactory>().As<ITurnFactory>();
+
             var totalRoundsParameter = new NamedParameter("totalRoundsInAGame", TotalRoundsInAGame);
             builder.RegisterType<RoundBasedEndConditionDetector>().As<IEndConditionDetector>()
                 .WithParameter(totalRoundsParameter);
         }
 
-        private static void LoadTurnTakingComponents(ContainerBuilder builder)
+        private static void LoadSpaces(ContainerBuilder builder)
         {
-            LoadDice(builder);
-            builder.RegisterType<TurnFactory>().As<ITurnFactory>();
-        }
-
-        private static void LoadDice(ContainerBuilder builder)
-        {
-            builder.RegisterType<Random>().AsSelf();
-            builder.RegisterType<FisherYatesShuffler>().As<IShuffler>();
-            builder.RegisterType<PairOfSixSidedDice>().As<IDice>();
-        }
-
-        private static void LoadGameConstructionUtilities(ContainerBuilder builder)
-        {
-            builder.RegisterType<PlayCoordinatorFactory>().As<IPlayCoordinatorFactory>();
-            builder.RegisterType<PlayerFactory>().As<IPlayerFactory>();
+            builder.Register(context => new Monopoly.Spaces().ToList())
+                .As<IEnumerable<ISpace>>()
+                .InstancePerLifetimeScope();
         }
     }
 }

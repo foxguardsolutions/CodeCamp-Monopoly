@@ -2,6 +2,6 @@
 {
     public interface IBoard
     {
-        Space GetOffsetSpace(Space initialSpace, int offset);
+        ISpace GetOffsetSpace(ISpace initialSpace, int offset);
     }
 }

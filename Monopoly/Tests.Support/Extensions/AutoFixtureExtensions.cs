@@ -32,5 +32,13 @@ namespace Tests.Support.Extensions
             fixture.Register(() => mock.Object);
             return mock;
         }
+
+        public static IEnumerable<Mock<T>> MockMany<T>(this IFixture fixture)
+            where T : class
+        {
+            var mocks = fixture.CreateMany<Mock<T>>();
+            fixture.Register(() => mocks.Select(mock => mock.Object));
+            return mocks;
+        }
     }
 }

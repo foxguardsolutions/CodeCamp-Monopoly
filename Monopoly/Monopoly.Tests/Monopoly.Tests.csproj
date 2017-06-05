@@ -54,6 +54,7 @@
   <ItemGroup>
     <Compile Include="DependencyInjectionContainerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SpacesTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -15,7 +15,7 @@ namespace BoardGame.Tests.PlayTests
             var turnFactory = Fixture.Create<TurnFactory>();
             var player = Fixture.Create<IPlayer>();
 
-            var turn = turnFactory.Create(player);
+            var turn = turnFactory.CreateFor(player);
 
             Assert.That(turn, Is.TypeOf<Turn>());
         }
