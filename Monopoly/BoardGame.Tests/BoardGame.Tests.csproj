@@ -50,6 +50,9 @@
       <HintPath>..\packages\AutoFixture.3.50.2\lib\net40\Ploeh.AutoFixture.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Ploeh.AutoFixture.AutoMoq, Version=3.50.2.0, Culture=neutral, PublicKeyToken=b24654c590009d4f, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoFixture.AutoMoq.3.50.2\lib\net40\Ploeh.AutoFixture.AutoMoq.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -76,6 +79,7 @@
     <Compile Include="ConstructionTests\PlayerFactoryTests.cs" />
     <Compile Include="ConstructionTests\SingleSpaceInitialPlacementHandlerTests.cs" />
     <Compile Include="ConstructionTests\SpaceCommandFactoryBinderTests.cs" />
+    <Compile Include="DiceTests\DiceWithCacheDecoratorTests.cs" />
     <Compile Include="DiceTests\PairOfSixSidedDiceTests.cs" />
     <Compile Include="ConstructionTests\PlayCoordinatorFactoryTests.cs" />
     <Compile Include="BoardsTests\LapCounterTests.cs" />
@@ -86,6 +90,12 @@
     <Compile Include="MoneyTests\AccountTests.cs" />
     <Compile Include="MoneyTests\FixedBalanceModificationTests.cs" />
     <Compile Include="MoneyTests\ProportionalPenaltyWithCapTests.cs" />
+    <Compile Include="RealEstateTests\PropertyGroupTests.cs" />
+    <Compile Include="RealEstateTests\PropertyTests.cs" />
+    <Compile Include="RealEstateTests\RentTests\RailroadRentStrategyTests.cs" />
+    <Compile Include="RealEstateTests\RentTests\RentCalculatorTests.cs" />
+    <Compile Include="RealEstateTests\RentTests\StreetRentStrategyTests.cs" />
+    <Compile Include="RealEstateTests\RentTests\UtilityRentStrategyTests.cs" />
     <Compile Include="RunnerTests.cs" />
     <Compile Include="PlayTests\PlayCoordinatorTests.cs" />
     <Compile Include="ConstructionTests\PlayerCountConstraintTests.cs" />

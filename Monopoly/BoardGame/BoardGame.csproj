@@ -71,6 +71,8 @@
     <Compile Include="Construction\PlayerFactory.cs" />
     <Compile Include="Construction\SingleSpaceInitialPlacementHandler.cs" />
     <Compile Include="Construction\SpaceCommandFactoryBinder.cs" />
+    <Compile Include="Dice\DiceWithCacheDecorator.cs" />
+    <Compile Include="Dice\IDiceWithCache.cs" />
     <Compile Include="Dice\PairOfSixSidedDice.cs" />
     <Compile Include="Extensions\MathExtensions.cs" />
     <Compile Include="ISpace.cs" />
@@ -103,6 +105,15 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Dice\Roll.cs" />
     <Compile Include="Play\RoundBasedEndConditionDetector.cs" />
+    <Compile Include="RealEstate\IProperty.cs" />
+    <Compile Include="RealEstate\IPropertyGroup.cs" />
+    <Compile Include="RealEstate\PropertyGroup.cs" />
+    <Compile Include="RealEstate\Rent\IRentStrategy.cs" />
+    <Compile Include="RealEstate\Property.cs" />
+    <Compile Include="RealEstate\Rent\RailroadRentStrategy.cs" />
+    <Compile Include="RealEstate\Rent\RentCalculator.cs" />
+    <Compile Include="RealEstate\Rent\StreetRentStrategy.cs" />
+    <Compile Include="RealEstate\Rent\UtilityRentStrategy.cs" />
     <Compile Include="Runner.cs" />
     <Compile Include="Play\Turn.cs" />
     <Compile Include="Play\TurnFactory.cs" />
