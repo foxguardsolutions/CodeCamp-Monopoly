@@ -54,11 +54,25 @@
     <Compile Include="Commands\Factories\GoToJailCommandFactory.cs" />
     <Compile Include="Commands\Factories\IncomeTaxCommandFactory.cs" />
     <Compile Include="Commands\Factories\LuxuryTaxCommandFactory.cs" />
+    <Compile Include="Construction\MonopolyPropertyCommandFactories.cs" />
     <Compile Include="Construction\MonopolySpaceCommandFactoryBinder.cs" />
     <Compile Include="ContainerFactory.cs" />
     <Compile Include="MonopolyModule.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RealEstate\Factories\BlueGroupFactory.cs" />
+    <Compile Include="RealEstate\Factories\DarkOrchidGroupFactory.cs" />
+    <Compile Include="RealEstate\Factories\GreenGroupFactory.cs" />
+    <Compile Include="RealEstate\Factories\IndigoGroupFactory.cs" />
+    <Compile Include="RealEstate\Factories\OrangeGroupFactory.cs" />
+    <Compile Include="RealEstate\Factories\RailroadGroupFactory.cs" />
+    <Compile Include="RealEstate\Factories\RedGroupFactory.cs" />
+    <Compile Include="RealEstate\Factories\SkyBlueGroupFactory.cs" />
+    <Compile Include="RealEstate\Factories\UtilityGroupFactory.cs" />
+    <Compile Include="RealEstate\Factories\YellowGroupFactory.cs" />
+    <Compile Include="RealEstate\MonopolyPropertyGroup.cs" />
+    <Compile Include="RealEstate\MonopolyProperties.cs" />
+    <Compile Include="RealEstate\Factories\MonopolyPropertyGroupFactory.cs" />
     <Compile Include="Spaces.cs" />
   </ItemGroup>
   <ItemGroup>

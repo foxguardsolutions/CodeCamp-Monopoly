@@ -14,8 +14,12 @@ using BoardGame.Dice;
 using BoardGame.Locations;
 using BoardGame.Money;
 using BoardGame.Play;
+using BoardGame.RealEstate;
+using BoardGame.RealEstate.Rent;
 using Monopoly.Commands.Factories;
 using Monopoly.Construction;
+using Monopoly.RealEstate;
+using Monopoly.RealEstate.Factories;
 using Shuffler;
 
 namespace Monopoly
@@ -39,6 +43,7 @@ namespace Monopoly
             LoadLocationServices(builder);
             LoadAccountServices(builder);
             LoadPlayServices(builder);
+            LoadProperties(builder);
             LoadSpaces(builder);
 
             builder.RegisterType<Runner>().AsSelf();
@@ -76,6 +81,7 @@ namespace Monopoly
             builder.RegisterType<GoToJailCommandFactory>().AsSelf()
                 .WithParameter(goToJailParameter);
             builder.RegisterType<LuxuryTaxCommandFactory>().AsSelf();
+            builder.RegisterType<LandOnPropertyCommandFactory>();
         }
 
         private static void LoadTurnInitializationCommandFactory(ContainerBuilder builder)
@@ -136,7 +142,15 @@ namespace Monopoly
             builder.RegisterType<Random>().AsSelf();
             builder.RegisterType<FisherYatesShuffler>().As<IShuffler>();
 
-            builder.RegisterType<PairOfSixSidedDice>().As<IDice>();
+            builder.RegisterType<PairOfSixSidedDice>()
+                .Named<IDice>(nameof(PairOfSixSidedDice));
+
+            builder.RegisterDecorator<IDice>(
+                (context, innerDice) => new DiceWithCacheDecorator(innerDice),
+                fromKey: nameof(PairOfSixSidedDice))
+                .As<IDiceWithCache>()
+                .As<IDice>()
+                .InstancePerLifetimeScope();
         }
 
         private static void LoadLocationServices(ContainerBuilder builder)
@@ -151,6 +165,23 @@ namespace Monopoly
             builder.Register<IAccountFactory>(context => new AccountFactory(StandardInitialBalance));
             builder.RegisterType<AccountRegistry>().As<IAccountRegistry>().InstancePerLifetimeScope();
             builder.RegisterType<FixedBalanceModification>().AsSelf();
+            builder.RegisterType<WithdrawalCommandFactory>();
+            builder.RegisterType<DepositCommandFactory>();
+            builder.RegisterType<FixedAmountPaymentFactory>().As<IPaymentFactory>();
+            builder.RegisterType<PaymentCommandFactory>().As<IPaymentCommandFactory>().WithParameters(PaymentCommandFactoryParameters);
+        }
+
+        public static IEnumerable<Parameter> PaymentCommandFactoryParameters
+        {
+            get
+            {
+                yield return new ResolvedParameter(
+                    (parameters, context) => parameters.Name == "withdrawalCommandFactory",
+                    (parameters, context) => context.Resolve<WithdrawalCommandFactory>());
+                yield return new ResolvedParameter(
+                    (parameters, context) => parameters.Name == "depositCommandFactory",
+                    (parameters, context) => context.Resolve<DepositCommandFactory>());
+            }
         }
 
         private static void LoadPlayServices(ContainerBuilder builder)
@@ -160,6 +191,47 @@ namespace Monopoly
             var totalRoundsParameter = new NamedParameter("totalRoundsInAGame", TotalRoundsInAGame);
             builder.RegisterType<RoundBasedEndConditionDetector>().As<IEndConditionDetector>()
                 .WithParameter(totalRoundsParameter);
+        }
+
+        private static void LoadProperties(ContainerBuilder builder)
+        {
+            builder.RegisterType<Property>().As<IProperty>();
+
+            LoadPropertyGroupFactories(builder);
+            builder.RegisterType<MonopolyProperties>()
+                .AsSelf()
+                .As<IEnumerable<IPropertyGroup>>()
+                .InstancePerLifetimeScope();
+
+            LoadRentServices(builder);
+            builder.RegisterType<MonopolyPropertyCommandFactories>();
+        }
+
+        private static void LoadPropertyGroupFactories(ContainerBuilder builder)
+        {
+            builder.RegisterType<IndigoGroupFactory>().As<MonopolyPropertyGroupFactory>();
+            builder.RegisterType<SkyBlueGroupFactory>().As<MonopolyPropertyGroupFactory>();
+            builder.RegisterType<DarkOrchidGroupFactory>().As<MonopolyPropertyGroupFactory>();
+            builder.RegisterType<OrangeGroupFactory>().As<MonopolyPropertyGroupFactory>();
+            builder.RegisterType<RedGroupFactory>().As<MonopolyPropertyGroupFactory>();
+            builder.RegisterType<YellowGroupFactory>().As<MonopolyPropertyGroupFactory>();
+            builder.RegisterType<GreenGroupFactory>().As<MonopolyPropertyGroupFactory>();
+            builder.RegisterType<BlueGroupFactory>().As<MonopolyPropertyGroupFactory>();
+            builder.RegisterType<RailroadGroupFactory>().As<MonopolyPropertyGroupFactory>();
+            builder.RegisterType<UtilityGroupFactory>().As<MonopolyPropertyGroupFactory>();
+        }
+
+        private static void LoadRentServices(ContainerBuilder builder)
+        {
+            LoadRentStrategies(builder);
+            builder.RegisterType<RentCalculator>().As<IRentCalculator>();
+        }
+
+        private static void LoadRentStrategies(ContainerBuilder builder)
+        {
+            builder.RegisterType<RailroadRentStrategy>();
+            builder.RegisterType<StreetRentStrategy>();
+            builder.RegisterType<UtilityRentStrategy>();
         }
 
         private static void LoadSpaces(ContainerBuilder builder)
