@@ -50,6 +50,7 @@
     <Compile Include="Commands\Factories\DepositCommandFactory.cs" />
     <Compile Include="Commands\Factories\IPaymentCommandFactory.cs" />
     <Compile Include="Commands\Factories\ITransactionCommandFactory.cs" />
+    <Compile Include="Commands\Factories\LandOnPropertyCommandFactory.cs" />
     <Compile Include="Commands\Factories\MoveDirectlyToSpaceCommandFactory.cs" />
     <Compile Include="Commands\Factories\PaymentCommandFactory.cs" />
     <Compile Include="Commands\Factories\RollAndMoveCommandFactory.cs" />
@@ -62,6 +63,7 @@
     <Compile Include="Commands\Command.cs" />
     <Compile Include="Commands\ICommand.cs" />
     <Compile Include="Commands\Factories\ICommandFactory.cs" />
+    <Compile Include="Commands\PurchasePropertyCommand.cs" />
     <Compile Include="Commands\RollAndMoveCommand.cs" />
     <Compile Include="Boards\DirectedCycleBoard.cs" />
     <Compile Include="Boards\DirectedPathBoard.cs" />

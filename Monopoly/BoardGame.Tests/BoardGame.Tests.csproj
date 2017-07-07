@@ -67,9 +67,11 @@
     <Compile Include="BoardsTests\DirectedPathBoardTests.cs" />
     <Compile Include="CommandsTests\AssessRentCommandTests.cs" />
     <Compile Include="CommandsTests\FactoriesTests\DepositCommandFactoryTests.cs" />
+    <Compile Include="CommandsTests\FactoriesTests\LandOnPropertyCommandFactoryTests.cs" />
     <Compile Include="CommandsTests\FactoriesTests\PaymentCommandFactoryTests.cs" />
     <Compile Include="CommandsTests\FactoriesTests\TransactionCommandFactoryTests.cs" />
     <Compile Include="CommandsTests\FactoriesTests\WithdrawalCommandFactoryTests.cs" />
+    <Compile Include="CommandsTests\PurchasePropertyCommandTests.cs" />
     <Compile Include="ConstructionTests\GameStateConfigurationInitializerTests.cs" />
     <Compile Include="CommandsTests\FactoriesTests\BalanceModificationCommandFactoryTests.cs" />
     <Compile Include="CommandsTests\FactoriesTests\MoveDirectlyToSpaceCommandFactoryTests.cs" />

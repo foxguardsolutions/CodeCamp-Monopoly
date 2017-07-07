@@ -10,13 +10,17 @@ namespace BoardGame.Tests.RealEstateTests
     public class PropertyTests : BaseTest
     {
         [Test]
-        public void NewProperty_StoresBaseRentPassedToConstructor()
+        public void NewProperty_StoresBaseRentAndPurchasePricePassedToConstructor()
         {
             var baseRent = Fixture.Create<int>();
+            var purchasePrice = Fixture.Create<uint>();
 
-            var property = new Property(baseRent);
+            var property = new Property(baseRent, purchasePrice);
 
-            Assert.That(property, Has.Property(nameof(Property.BaseRent)).EqualTo(baseRent));
+            Assert.That(
+                property,
+                Has.Property(nameof(Property.BaseRent)).EqualTo(baseRent)
+                .And.Property(nameof(Property.PurchasePrice)).EqualTo(purchasePrice));
         }
     }
 }
