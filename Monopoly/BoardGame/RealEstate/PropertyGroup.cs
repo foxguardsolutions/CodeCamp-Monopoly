@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 
 using BoardGame.RealEstate.Rent;
@@ -25,6 +26,16 @@ namespace BoardGame.RealEstate
         public bool Contains(IProperty property)
         {
             return _properties.Contains(property);
+        }
+
+        public IEnumerator<IProperty> GetEnumerator()
+        {
+            return _properties.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
         }
     }
 }

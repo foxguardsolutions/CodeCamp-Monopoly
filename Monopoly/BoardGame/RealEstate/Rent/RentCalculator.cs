@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace BoardGame.RealEstate.Rent
 {
-    public class RentCalculator
+    public class RentCalculator : IRentCalculator
     {
         private readonly IEnumerable<IPropertyGroup> _propertyGroups;
 

@@ -65,6 +65,11 @@
   <ItemGroup>
     <Compile Include="BoardsTests\DirectedCycleBoardTests.cs" />
     <Compile Include="BoardsTests\DirectedPathBoardTests.cs" />
+    <Compile Include="CommandsTests\AssessRentCommandTests.cs" />
+    <Compile Include="CommandsTests\FactoriesTests\DepositCommandFactoryTests.cs" />
+    <Compile Include="CommandsTests\FactoriesTests\PaymentCommandFactoryTests.cs" />
+    <Compile Include="CommandsTests\FactoriesTests\TransactionCommandFactoryTests.cs" />
+    <Compile Include="CommandsTests\FactoriesTests\WithdrawalCommandFactoryTests.cs" />
     <Compile Include="ConstructionTests\GameStateConfigurationInitializerTests.cs" />
     <Compile Include="CommandsTests\FactoriesTests\BalanceModificationCommandFactoryTests.cs" />
     <Compile Include="CommandsTests\FactoriesTests\MoveDirectlyToSpaceCommandFactoryTests.cs" />
@@ -89,6 +94,8 @@
     <Compile Include="MoneyTests\AccountRegistryTests.cs" />
     <Compile Include="MoneyTests\AccountTests.cs" />
     <Compile Include="MoneyTests\FixedBalanceModificationTests.cs" />
+    <Compile Include="MoneyTests\FixedAmountPaymentFactoryTests.cs" />
+    <Compile Include="MoneyTests\FixedAmountPaymentTests.cs" />
     <Compile Include="MoneyTests\ProportionalPenaltyWithCapTests.cs" />
     <Compile Include="RealEstateTests\PropertyGroupTests.cs" />
     <Compile Include="RealEstateTests\PropertyTests.cs" />

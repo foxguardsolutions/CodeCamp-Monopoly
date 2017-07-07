@@ -45,10 +45,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Boards\IBoardWithEnd.cs" />
+    <Compile Include="Commands\AssessRentCommand.cs" />
     <Compile Include="Commands\Factories\BalanceModificationCommandFactory.cs" />
+    <Compile Include="Commands\Factories\DepositCommandFactory.cs" />
+    <Compile Include="Commands\Factories\IPaymentCommandFactory.cs" />
+    <Compile Include="Commands\Factories\ITransactionCommandFactory.cs" />
     <Compile Include="Commands\Factories\MoveDirectlyToSpaceCommandFactory.cs" />
+    <Compile Include="Commands\Factories\PaymentCommandFactory.cs" />
     <Compile Include="Commands\Factories\RollAndMoveCommandFactory.cs" />
     <Compile Include="Commands\Factories\CompletedLapsRewardingCommandFactoryDecorator.cs" />
+    <Compile Include="Commands\Factories\WithdrawalCommandFactory.cs" />
     <Compile Include="Commands\ICommandQueue.cs" />
     <Compile Include="Commands\MoveCommand.cs" />
     <Compile Include="Commands\MoveDirectlyToSpaceCommand.cs" />
@@ -86,6 +92,10 @@
     <Compile Include="Money\IAccountFactory.cs" />
     <Compile Include="Money\IAccountRegistry.cs" />
     <Compile Include="Money\IBalanceModification.cs" />
+    <Compile Include="Money\IPayment.cs" />
+    <Compile Include="Money\IPaymentFactory.cs" />
+    <Compile Include="Money\FixedAmountPayment.cs" />
+    <Compile Include="Money\FixedAmountPaymentFactory.cs" />
     <Compile Include="Money\ProportionalPenaltyWithCap.cs" />
     <Compile Include="Play\IPlayCoordinator.cs" />
     <Compile Include="Play\PlayCoordinator.cs" />
@@ -108,6 +118,7 @@
     <Compile Include="RealEstate\IProperty.cs" />
     <Compile Include="RealEstate\IPropertyGroup.cs" />
     <Compile Include="RealEstate\PropertyGroup.cs" />
+    <Compile Include="RealEstate\Rent\IRentCalculator.cs" />
     <Compile Include="RealEstate\Rent\IRentStrategy.cs" />
     <Compile Include="RealEstate\Property.cs" />
     <Compile Include="RealEstate\Rent\RailroadRentStrategy.cs" />

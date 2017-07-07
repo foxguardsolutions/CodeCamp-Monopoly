@@ -14,6 +14,7 @@ namespace BoardGame.Tests.RealEstateTests
 {
     public class PropertyGroupTests : BaseTest
     {
+        private IEnumerable<IProperty> _properties;
         private IProperty _thisProperty;
         private int _expectedRent;
 
@@ -22,11 +23,11 @@ namespace BoardGame.Tests.RealEstateTests
         [SetUp]
         public void SetUp()
         {
-            var properties = Fixture.CreateMany<IProperty>().ToList();
-            Fixture.Register<IEnumerable<IProperty>>(() => properties);
+            _properties = Fixture.CreateMany<IProperty>().ToList();
+            Fixture.Register(() => _properties);
 
-            _thisProperty = Fixture.SelectFrom(properties);
-            var otherProperties = properties.Except(new[] { _thisProperty });
+            _thisProperty = Fixture.SelectFrom(_properties);
+            var otherProperties = _properties.Except(new[] { _thisProperty });
             _expectedRent = Fixture.Create<int>();
 
             var mockRentStrategy = Fixture.Mock<IRentStrategy>();
@@ -55,6 +56,12 @@ namespace BoardGame.Tests.RealEstateTests
         {
             var propertyNotInTheGroup = Fixture.Create<IProperty>();
             Assert.False(_propertyGroup.Contains(propertyNotInTheGroup));
+        }
+
+        [Test]
+        public void Enumerate_YieldsPropertiesPassedToConstructor()
+        {
+            Assert.That(_propertyGroup, Is.EquivalentTo(_properties));
         }
     }
 }
