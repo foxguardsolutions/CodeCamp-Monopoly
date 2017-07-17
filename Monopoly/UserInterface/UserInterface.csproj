@@ -44,7 +44,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Choices\DefaultSelector.cs" />
+    <Compile Include="Choices\IOptionSelector.cs" />
+    <Compile Include="EnumWrapper.cs" />
+    <Compile Include="Choices\IOptionParser.cs" />
+    <Compile Include="Choices\IPrompt.cs" />
+    <Compile Include="Choices\OptionParser.cs" />
+    <Compile Include="Extensions\EnumExtensions.cs" />
+    <Compile Include="IEnum.cs" />
+    <Compile Include="IO\ConsoleReaderWriter.cs" />
+    <Compile Include="IO\ITextReaderWriter.cs" />
+    <Compile Include="IO\ITextWriter.cs" />
+    <Compile Include="Choices\OptionSelector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Choices\UserChoicePrompt.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

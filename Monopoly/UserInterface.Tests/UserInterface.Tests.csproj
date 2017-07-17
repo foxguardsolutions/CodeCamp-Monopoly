@@ -56,6 +56,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ByteEnum.cs" />
+    <Compile Include="ChoicesTests\DefaultSelectorTests.cs" />
+    <Compile Include="ChoicesTests\OptionParserTests.cs" />
+    <Compile Include="ChoicesTests\OptionSelectorTests.cs" />
+    <Compile Include="ChoicesTests\UserChoicePromptTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
