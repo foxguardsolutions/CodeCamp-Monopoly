@@ -4,7 +4,7 @@ using System.Linq;
 using BoardGame.Boards;
 using BoardGame.Commands.Factories;
 
-namespace BoardGame.Commands
+namespace BoardGame.Commands.Decorators
 {
     public class CompletedLapsRewardingCommandDecorator : Command
     {

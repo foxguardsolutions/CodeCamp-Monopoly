@@ -1,12 +1,11 @@
-﻿using BoardGame.Commands;
-using BoardGame.Commands.Factories;
+﻿using BoardGame.Commands.Decorators;
 
 using NUnit.Framework;
 using Ploeh.AutoFixture;
 
 using Tests.Support;
 
-namespace BoardGame.Tests.CommandsTests.FactoriesTests
+namespace BoardGame.Tests.CommandsTests.DecoratorsTests
 {
     public class CompletedLapsRewardingCommandFactoryDecoratorTests : BaseTest
     {

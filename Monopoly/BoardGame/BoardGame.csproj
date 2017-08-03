@@ -54,12 +54,12 @@
     <Compile Include="Commands\Factories\MoveDirectlyToSpaceCommandFactory.cs" />
     <Compile Include="Commands\Factories\PaymentCommandFactory.cs" />
     <Compile Include="Commands\Factories\RollAndMoveCommandFactory.cs" />
-    <Compile Include="Commands\Factories\CompletedLapsRewardingCommandFactoryDecorator.cs" />
+    <Compile Include="Commands\Decorators\CompletedLapsRewardingCommandFactoryDecorator.cs" />
     <Compile Include="Commands\Factories\WithdrawalCommandFactory.cs" />
     <Compile Include="Commands\ICommandQueue.cs" />
     <Compile Include="Commands\MoveCommand.cs" />
     <Compile Include="Commands\MoveDirectlyToSpaceCommand.cs" />
-    <Compile Include="Commands\CompletedLapsRewardingCommandDecorator.cs" />
+    <Compile Include="Commands\Decorators\CompletedLapsRewardingCommandDecorator.cs" />
     <Compile Include="Commands\Command.cs" />
     <Compile Include="Commands\ICommand.cs" />
     <Compile Include="Commands\Factories\ICommandFactory.cs" />

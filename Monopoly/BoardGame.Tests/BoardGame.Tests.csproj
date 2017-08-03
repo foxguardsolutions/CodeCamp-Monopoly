@@ -75,12 +75,12 @@
     <Compile Include="ConstructionTests\GameStateConfigurationInitializerTests.cs" />
     <Compile Include="CommandsTests\FactoriesTests\BalanceModificationCommandFactoryTests.cs" />
     <Compile Include="CommandsTests\FactoriesTests\MoveDirectlyToSpaceCommandFactoryTests.cs" />
-    <Compile Include="CommandsTests\FactoriesTests\CompletedLapsRewardingCommandFactoryDecoratorTests.cs" />
+    <Compile Include="CommandsTests\DecoratorsTests\CompletedLapsRewardingCommandFactoryDecoratorTests.cs" />
     <Compile Include="CommandsTests\FactoriesTests\RollAndMoveCommandFactoryTests.cs" />
     <Compile Include="CommandsTests\MoveCommandTests.cs" />
     <Compile Include="CommandsTests\MoveDirectlyToSpaceCommandTests.cs" />
     <Compile Include="CommandsTests\RollAndMoveCommandTests.cs" />
-    <Compile Include="CommandsTests\CompletedLapsRewardingCommandDecoratorTests.cs" />
+    <Compile Include="CommandsTests\DecoratorsTests\CompletedLapsRewardingCommandDecoratorTests.cs" />
     <Compile Include="CommandsTests\SelfExtendingCommandQueueTests.cs" />
     <Compile Include="CommandsTests\UpdatePlayerBalanceCommandTests.cs" />
     <Compile Include="ConstructionTests\PlayerFactoryTests.cs" />

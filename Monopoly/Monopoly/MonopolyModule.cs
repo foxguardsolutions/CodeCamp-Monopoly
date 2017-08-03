@@ -8,6 +8,7 @@ using Autofac.Core;
 using BoardGame;
 using BoardGame.Boards;
 using BoardGame.Commands;
+using BoardGame.Commands.Decorators;
 using BoardGame.Commands.Factories;
 using BoardGame.Construction;
 using BoardGame.Dice;

@@ -3,6 +3,7 @@ using System.Linq;
 
 using BoardGame.Boards;
 using BoardGame.Commands;
+using BoardGame.Commands.Decorators;
 using BoardGame.Commands.Factories;
 
 using Moq;
@@ -12,7 +13,7 @@ using Ploeh.AutoFixture;
 using Tests.Support;
 using Tests.Support.Extensions;
 
-namespace BoardGame.Tests.CommandsTests
+namespace BoardGame.Tests.CommandsTests.DecoratorsTests
 {
     public class CompletedLapsRewardingCommandDecoratorTests : BaseTest
     {

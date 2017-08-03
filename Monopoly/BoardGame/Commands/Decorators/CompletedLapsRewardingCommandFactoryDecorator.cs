@@ -1,6 +1,7 @@
 ﻿using BoardGame.Boards;
+using BoardGame.Commands.Factories;
 
-namespace BoardGame.Commands.Factories
+namespace BoardGame.Commands.Decorators
 {
     public class CompletedLapsRewardingCommandFactoryDecorator : ICommandFactory
     {
