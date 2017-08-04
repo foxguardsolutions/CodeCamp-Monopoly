@@ -22,7 +22,11 @@ namespace BoardGame.Commands
         public override void Execute()
         {
             if (_player == _property.Owner)
+            {
+                Summary = $"\t{_player.Name} already owns this property.";
                 return;
+            }
+
             AddRentPaymentCommands();
         }
 
@@ -31,6 +35,8 @@ namespace BoardGame.Commands
             var rentValue = (uint)_rentCalculator.GetRentFor(_property);
             foreach (var paymentCommand in _paymentCommandFactory.CreatePaymentCommands(_player, _property.Owner, rentValue))
                 SubsequentCommands.Add(paymentCommand);
+
+            Summary = $"\t{_player.Name} pays ${rentValue} in rent to {_property.Owner.Name}.";
         }
     }
 }

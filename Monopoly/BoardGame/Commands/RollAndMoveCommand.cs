@@ -1,4 +1,6 @@
-﻿using BoardGame.Dice;
+﻿using System;
+
+using BoardGame.Dice;
 using BoardGame.Locations;
 
 namespace BoardGame.Commands
@@ -18,6 +20,8 @@ namespace BoardGame.Commands
             var roll = _dice.Roll();
             var destination = PlayerMover.Move(Player, roll.Value);
             AddCommandFrom(destination);
+
+            Summary = $"{Environment.NewLine}{Player.Name} rolls {roll.Value} and moves to {destination.Name}.";
         }
     }
 }

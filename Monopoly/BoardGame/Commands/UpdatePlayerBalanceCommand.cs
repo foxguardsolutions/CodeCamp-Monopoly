@@ -18,7 +18,10 @@ namespace BoardGame.Commands
         public override void Execute()
         {
             var account = _accounts.GetAccount(_player);
+            var balanceBefore = account.Balance;
             account.Assess(_balanceModification);
+
+            Summary = $"\t{_player.Name}'s balance changes from ${balanceBefore} to ${account.Balance}.";
         }
     }
 }

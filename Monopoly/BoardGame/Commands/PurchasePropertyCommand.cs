@@ -1,5 +1,4 @@
-﻿using System;
-using BoardGame.Commands.Factories;
+﻿using BoardGame.Commands.Factories;
 using BoardGame.RealEstate;
 
 namespace BoardGame.Commands
@@ -22,6 +21,8 @@ namespace BoardGame.Commands
             var paymentCommand = _paymentCommandFactory.CreateWithdrawalCommand(_player, _property.PurchasePrice);
             SubsequentCommands.Add(paymentCommand);
             _property.Owner = _player;
+
+            Summary = $"\t{_player.Name} purchases the property for ${_property.PurchasePrice}.";
         }
     }
 }

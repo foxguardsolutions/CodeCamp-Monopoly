@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 using BoardGame.Boards;
@@ -12,8 +13,10 @@ namespace BoardGame.Commands.Decorators
         private readonly ICommand _decoratedCommand;
         private readonly ILapCounter _lapCounter;
         private readonly ICommandFactory _rewardCommandFactory;
+        private string _rewardSummary;
 
-        public override string Summary => _decoratedCommand.Summary;
+        private string RewardNotification => $"{Environment.NewLine}\t{_player.Name} completes a lap and is rewarded.";
+        public override string Summary => _decoratedCommand.Summary + _rewardSummary;
 
         public CompletedLapsRewardingCommandDecorator(
             IPlayer player,
@@ -25,6 +28,7 @@ namespace BoardGame.Commands.Decorators
             _decoratedCommand = decoratedCommand;
             _lapCounter = lapCounter;
             _rewardCommandFactory = rewardCommandFactory;
+            _rewardSummary = string.Empty;
         }
 
         public override void Execute()
@@ -45,6 +49,8 @@ namespace BoardGame.Commands.Decorators
         {
             var reward = _rewardCommandFactory.CreateFor(_player);
             SubsequentCommands.Add(reward);
+
+            _rewardSummary += RewardNotification;
         }
 
         public override IEnumerable<ICommand> GetSubsequentCommands()
