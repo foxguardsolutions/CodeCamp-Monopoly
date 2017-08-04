@@ -93,6 +93,10 @@
       <Project>{5628FDCE-3D9F-4366-B9D7-F226F97DB9C3}</Project>
       <Name>Shuffler</Name>
     </ProjectReference>
+    <ProjectReference Include="..\UserInterface\UserInterface.csproj">
+      <Project>{E181931B-5D34-44C5-A02B-B7604F42DFCC}</Project>
+      <Name>UserInterface</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

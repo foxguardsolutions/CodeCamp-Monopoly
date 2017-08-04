@@ -16,9 +16,12 @@ using BoardGame.RealEstate;
 using Monopoly.Commands.Factories;
 using Monopoly.Construction;
 using Monopoly.RealEstate;
+
 using NUnit.Framework;
 
 using Shuffler;
+using UserInterface;
+using UserInterface.IO;
 
 namespace Monopoly.Tests
 {
@@ -60,6 +63,9 @@ namespace Monopoly.Tests
 
         private static IEnumerable<TestCaseData> ComponentResolutionTestCases()
         {
+            yield return new TestCaseData(typeof(ITextWriter), typeof(ConsoleReaderWriter));
+            yield return new TestCaseData(typeof(ITextReaderWriter), typeof(ConsoleReaderWriter));
+
             yield return new TestCaseData(typeof(IBoardWithEnd), typeof(DirectedCycleBoard));
             yield return new TestCaseData(typeof(IBoard), typeof(DirectedCycleBoard));
 

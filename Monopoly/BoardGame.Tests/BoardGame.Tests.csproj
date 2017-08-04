@@ -66,6 +66,9 @@
     <Compile Include="BoardsTests\DirectedCycleBoardTests.cs" />
     <Compile Include="BoardsTests\DirectedPathBoardTests.cs" />
     <Compile Include="CommandsTests\AssessRentCommandTests.cs" />
+    <Compile Include="CommandsTests\DecoratorsTests\CommandDecoratorTests.cs" />
+    <Compile Include="CommandsTests\DecoratorsTests\MonadicCommandFactoryDecoratorTests.cs" />
+    <Compile Include="CommandsTests\DecoratorsTests\VerboseCommandDecoratorTests.cs" />
     <Compile Include="CommandsTests\FactoriesTests\DepositCommandFactoryTests.cs" />
     <Compile Include="CommandsTests\FactoriesTests\DyadicCommandFactoryTests.cs" />
     <Compile Include="CommandsTests\FactoriesTests\LandOnPropertyCommandFactoryTests.cs" />
@@ -139,6 +142,10 @@
     <ProjectReference Include="..\Tests.Support\Tests.Support.csproj">
       <Project>{1ff0a837-b081-48e2-a62a-1994dc1970be}</Project>
       <Name>Tests.Support</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UserInterface\UserInterface.csproj">
+      <Project>{E181931B-5D34-44C5-A02B-B7604F42DFCC}</Project>
+      <Name>UserInterface</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

@@ -13,6 +13,8 @@ namespace BoardGame.Commands.Decorators
         private readonly ILapCounter _lapCounter;
         private readonly ICommandFactory _rewardCommandFactory;
 
+        public override string Summary => _decoratedCommand.Summary;
+
         public CompletedLapsRewardingCommandDecorator(
             IPlayer player,
             ICommand decoratedCommand,

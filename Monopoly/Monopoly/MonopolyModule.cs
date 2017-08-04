@@ -22,6 +22,8 @@ using Monopoly.Construction;
 using Monopoly.RealEstate;
 using Monopoly.RealEstate.Factories;
 using Shuffler;
+using UserInterface;
+using UserInterface.IO;
 
 namespace Monopoly
 {
@@ -37,6 +39,7 @@ namespace Monopoly
 
         protected override void Load(ContainerBuilder builder)
         {
+            LoadUserInterface(builder);
             LoadBoard(builder);
             LoadCommands(builder);
             LoadConstructionServices(builder);
@@ -48,6 +51,11 @@ namespace Monopoly
             LoadSpaces(builder);
 
             builder.RegisterType<Runner>().AsSelf();
+        }
+
+        private static void LoadUserInterface(ContainerBuilder builder)
+        {
+            builder.RegisterType<ConsoleReaderWriter>().As<ITextReaderWriter>().As<ITextWriter>();
         }
 
         private static void LoadBoard(ContainerBuilder builder)
@@ -99,18 +107,27 @@ namespace Monopoly
                 (parameters, context) => parameters.Name == "lapRewardCommandFactory",
                 (parameters, context) => context.Resolve<DyadicCommandFactory<IBalanceModification, UpdatePlayerBalanceCommand>>(rewardParameter));
 
-            builder.RegisterType<CompletedLapsRewardingCommandFactoryDecorator>()
+            var completedLapsRewardingCommandFactoryParameter = new ResolvedParameter(
+                (parameters, context) => parameters.ParameterType == typeof(ICommandFactory),
+                (parameters, context) => context.Resolve<CompletedLapsRewardingCommandFactoryDecorator>(
+                    rollAndMoveParameter, rewardCommandFactoryParameter));
+            var textWriterParameter = new ResolvedParameter(
+                (parameters, context) => parameters.ParameterType == typeof(ITextWriter),
+                (parameters, context) => context.Resolve<ITextWriter>());
+
+            builder.RegisterType<MonadicCommandFactoryDecorator<VerboseCommandDecorator>>()
                 .As<ICommandFactory>()
-                .WithParameter(rollAndMoveParameter)
-                .WithParameter(rewardCommandFactoryParameter)
+                .WithParameter(completedLapsRewardingCommandFactoryParameter)
+                .WithParameter(textWriterParameter)
                 .Keyed<ICommandFactory>(TurnInitializationCommandFactoryKey);
         }
 
         private static void LoadGeneralCommands(ContainerBuilder builder)
         {
+            builder.RegisterGeneric(typeof(MonadicCommandFactoryDecorator<>)).AsSelf();
+            builder.RegisterGeneric(typeof(MonadicCommandFactory<>)).AsSelf();
             builder.RegisterGeneric(typeof(DyadicCommandFactory<,>)).AsSelf();
             builder.RegisterType<CompletedLapsRewardingCommandFactoryDecorator>().AsSelf();
-            builder.RegisterGeneric(typeof(MonadicCommandFactory<>)).AsSelf();
         }
 
         private static void LoadConstructionServices(ContainerBuilder builder)
