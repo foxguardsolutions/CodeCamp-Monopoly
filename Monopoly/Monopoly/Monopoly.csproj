@@ -57,6 +57,8 @@
     <Compile Include="Construction\MonopolyPropertyCommandFactories.cs" />
     <Compile Include="Construction\MonopolySpaceCommandFactoryBinder.cs" />
     <Compile Include="ContainerFactory.cs" />
+    <Compile Include="DefaultUiModule.cs" />
+    <Compile Include="InteractiveUiModule.cs" />
     <Compile Include="MonopolyModule.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -5,18 +5,24 @@ namespace BoardGame.Play
     public class Turn
     {
         private readonly IPlayer _player;
-        private readonly ICommandQueue _commandQueue;
+        private readonly ICommandQueue[] _turnStages;
 
-        public Turn(IPlayer player, ICommandQueue commandQueue)
+        public Turn(IPlayer player, params ICommandQueue[] turnStageCommandQueues)
         {
             _player = player;
-            _commandQueue = commandQueue;
+            _turnStages = turnStageCommandQueues;
         }
 
         public void Complete()
         {
-            _commandQueue.InitializeFor(_player);
-            _commandQueue.ExecuteCommands();
+            foreach (var stage in _turnStages)
+                Complete(stage);
+        }
+
+        private void Complete(ICommandQueue stage)
+        {
+            stage.InitializeFor(_player);
+            stage.ExecuteCommands();
         }
     }
 }
