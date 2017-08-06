@@ -3,6 +3,7 @@
     public class Property : IProperty
     {
         public IPlayer Owner { get; set; }
+        public bool IsMortgaged { get; set; }
         public int BaseRent { get; }
         public uint PurchasePrice { get; }
 
