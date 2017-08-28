@@ -1,4 +1,5 @@
-﻿using BoardGame.Boards;
+﻿using System;
+
 using BoardGame.Commands.Factories;
 
 namespace BoardGame.Commands.Decorators
@@ -6,21 +7,23 @@ namespace BoardGame.Commands.Decorators
     public class CompletedLapsRewardingCommandFactoryDecorator : ICommandFactory
     {
         private readonly ICommandFactory _decoratedCommandFactory;
-        private readonly ILapCounter _lapCounter;
         private readonly ICommandFactory _lapRewardCommandFactory;
+        private readonly Func<IPlayer, ICommand, ICommandFactory, CompletedLapsRewardingCommandDecorator> _innerCommandFactory;
 
-        public CompletedLapsRewardingCommandFactoryDecorator(ICommandFactory decoratedCommandFactory, ILapCounter lapCounter, ICommandFactory lapRewardCommandFactory)
+        public CompletedLapsRewardingCommandFactoryDecorator(
+            ICommandFactory decoratedCommandFactory,
+            ICommandFactory lapRewardCommandFactory,
+            Func<IPlayer, ICommand, ICommandFactory, CompletedLapsRewardingCommandDecorator> innerCommandFactory)
         {
             _decoratedCommandFactory = decoratedCommandFactory;
-            _lapCounter = lapCounter;
             _lapRewardCommandFactory = lapRewardCommandFactory;
+            _innerCommandFactory = innerCommandFactory;
         }
 
         public ICommand CreateFor(IPlayer player)
         {
             var decoratedCommand = _decoratedCommandFactory.CreateFor(player);
-            var turnInitializationCommand = new CompletedLapsRewardingCommandDecorator(player, decoratedCommand, _lapCounter, _lapRewardCommandFactory);
-            return turnInitializationCommand;
+            return _innerCommandFactory(player, decoratedCommand, _lapRewardCommandFactory);
         }
     }
 }

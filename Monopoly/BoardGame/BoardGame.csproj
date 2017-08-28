@@ -46,14 +46,13 @@
   <ItemGroup>
     <Compile Include="Boards\IBoardWithEnd.cs" />
     <Compile Include="Commands\AssessRentCommand.cs" />
-    <Compile Include="Commands\Factories\BalanceModificationCommandFactory.cs" />
     <Compile Include="Commands\Factories\DepositCommandFactory.cs" />
+    <Compile Include="Commands\Factories\DyadicCommandFactory.cs" />
     <Compile Include="Commands\Factories\IPaymentCommandFactory.cs" />
     <Compile Include="Commands\Factories\ITransactionCommandFactory.cs" />
     <Compile Include="Commands\Factories\LandOnPropertyCommandFactory.cs" />
-    <Compile Include="Commands\Factories\MoveDirectlyToSpaceCommandFactory.cs" />
+    <Compile Include="Commands\Factories\MonadicCommandFactory.cs" />
     <Compile Include="Commands\Factories\PaymentCommandFactory.cs" />
-    <Compile Include="Commands\Factories\RollAndMoveCommandFactory.cs" />
     <Compile Include="Commands\Decorators\CompletedLapsRewardingCommandFactoryDecorator.cs" />
     <Compile Include="Commands\Factories\WithdrawalCommandFactory.cs" />
     <Compile Include="Commands\ICommandQueue.cs" />

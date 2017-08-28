@@ -1,22 +1,26 @@
-﻿using BoardGame.Money;
+﻿using System;
+
+using BoardGame.Money;
 
 namespace BoardGame.Commands.Factories
 {
     public class WithdrawalCommandFactory : ITransactionCommandFactory
     {
         private readonly IPaymentFactory _paymentFactory;
-        private readonly IAccountRegistry _accounts;
+        private readonly Func<IPlayer, IBalanceModification, UpdatePlayerBalanceCommand> _innerCommandFactory;
 
-        public WithdrawalCommandFactory(IPaymentFactory paymentFactory, IAccountRegistry accounts)
+        public WithdrawalCommandFactory(
+            IPaymentFactory paymentFactory,
+            Func<IPlayer, IBalanceModification, UpdatePlayerBalanceCommand> innerCommandFactory)
         {
             _paymentFactory = paymentFactory;
-            _accounts = accounts;
+            _innerCommandFactory = innerCommandFactory;
         }
 
         public ICommand Create(IPlayer player, uint amount)
         {
             var payment = _paymentFactory.Create(amount);
-            return new UpdatePlayerBalanceCommand(player, _accounts, payment.Withdrawal);
+            return _innerCommandFactory(player, payment.Withdrawal);
         }
     }
 }

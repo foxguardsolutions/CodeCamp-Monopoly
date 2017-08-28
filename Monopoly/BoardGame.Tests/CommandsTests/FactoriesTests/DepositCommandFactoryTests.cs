@@ -10,9 +10,9 @@ namespace BoardGame.Tests.CommandsTests.FactoriesTests
         [Test]
         public void Create_CreatesCommandUsingDepositFromPaymentCreatedByPaymentFactory()
         {
-            Factory.Create(Player, Amount);
+            Subject.Create(Player, Amount);
 
-            MockPayment.Verify(p => p.Deposit);
+            MockInnerCommandFactory.Verify(icf => icf(Player, MockPayment.Object.Deposit));
         }
 
         protected override ITransactionCommandFactory GivenTransactionCommandFactory()

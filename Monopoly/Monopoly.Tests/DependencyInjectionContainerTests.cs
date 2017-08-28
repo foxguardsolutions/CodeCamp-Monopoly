@@ -66,7 +66,6 @@ namespace Monopoly.Tests
             yield return new TestCaseData(typeof(IncomeTaxCommandFactory), typeof(IncomeTaxCommandFactory));
             yield return new TestCaseData(typeof(GoToJailCommandFactory), typeof(GoToJailCommandFactory));
             yield return new TestCaseData(typeof(LuxuryTaxCommandFactory), typeof(LuxuryTaxCommandFactory));
-            yield return new TestCaseData(typeof(RollAndMoveCommandFactory), typeof(RollAndMoveCommandFactory));
             yield return new TestCaseData(typeof(ICommandQueue), typeof(SelfExtendingCommandQueue));
 
             yield return new TestCaseData(typeof(IGameStateConfigurationInitializer), typeof(GameStateConfigurationInitializer));

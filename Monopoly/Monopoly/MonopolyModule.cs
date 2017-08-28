@@ -89,15 +89,15 @@ namespace Monopoly
         {
             var rollAndMoveParameter = new ResolvedParameter(
                 (parameters, context) => parameters.Name == "decoratedCommandFactory",
-                (parameters, context) => context.Resolve<RollAndMoveCommandFactory>());
+                (parameters, context) => context.Resolve<MonadicCommandFactory<RollAndMoveCommand>>());
 
             var rewardValueParameter = new NamedParameter("balanceModificationValue", RewardForPassingGo);
             var rewardParameter = new ResolvedParameter(
-                (parameters, context) => parameters.Name == "balanceModification",
+                (parameters, context) => parameters.ParameterType == typeof(IBalanceModification),
                 (parameters, context) => context.Resolve<FixedBalanceModification>(rewardValueParameter));
             var rewardCommandFactoryParameter = new ResolvedParameter(
                 (parameters, context) => parameters.Name == "lapRewardCommandFactory",
-                (parameters, context) => context.Resolve<BalanceModificationCommandFactory>(rewardParameter));
+                (parameters, context) => context.Resolve<DyadicCommandFactory<IBalanceModification, UpdatePlayerBalanceCommand>>(rewardParameter));
 
             builder.RegisterType<CompletedLapsRewardingCommandFactoryDecorator>()
                 .As<ICommandFactory>()
@@ -108,9 +108,9 @@ namespace Monopoly
 
         private static void LoadGeneralCommands(ContainerBuilder builder)
         {
-            builder.RegisterType<BalanceModificationCommandFactory>().AsSelf();
+            builder.RegisterGeneric(typeof(DyadicCommandFactory<,>)).AsSelf();
             builder.RegisterType<CompletedLapsRewardingCommandFactoryDecorator>().AsSelf();
-            builder.RegisterType<RollAndMoveCommandFactory>().AsSelf();
+            builder.RegisterGeneric(typeof(MonadicCommandFactory<>)).AsSelf();
         }
 
         private static void LoadConstructionServices(ContainerBuilder builder)

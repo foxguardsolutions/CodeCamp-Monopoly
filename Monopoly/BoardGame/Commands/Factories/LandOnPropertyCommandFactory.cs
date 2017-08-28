@@ -1,26 +1,30 @@
-﻿using BoardGame.RealEstate;
-using BoardGame.RealEstate.Rent;
+﻿using System;
+
+using BoardGame.RealEstate;
 
 namespace BoardGame.Commands.Factories
 {
     public class LandOnPropertyCommandFactory : ICommandFactory
     {
         private readonly IProperty _property;
-        private readonly IRentCalculator _rentCalculator;
-        private readonly IPaymentCommandFactory _paymentCommandFactory;
+        private readonly Func<IPlayer, IProperty, PurchasePropertyCommand> _innerPurchaseFactory;
+        private readonly Func<IPlayer, IProperty, AssessRentCommand> _innerRentFactory;
 
-        public LandOnPropertyCommandFactory(IProperty property, IRentCalculator rentCalculator, IPaymentCommandFactory paymentCommandFactory)
+        public LandOnPropertyCommandFactory(
+            IProperty property,
+            Func<IPlayer, IProperty, PurchasePropertyCommand> innerPurchaseFactory,
+            Func<IPlayer, IProperty, AssessRentCommand> innerRentFactory)
         {
             _property = property;
-            _rentCalculator = rentCalculator;
-            _paymentCommandFactory = paymentCommandFactory;
+            _innerPurchaseFactory = innerPurchaseFactory;
+            _innerRentFactory = innerRentFactory;
         }
 
         public ICommand CreateFor(IPlayer player)
         {
             if (_property.Owner == null)
-                return new PurchasePropertyCommand(player, _property, _paymentCommandFactory);
-            return new AssessRentCommand(player, _property, _rentCalculator, _paymentCommandFactory);
+                return _innerPurchaseFactory(player, _property);
+            return _innerRentFactory(player, _property);
         }
     }
 }
