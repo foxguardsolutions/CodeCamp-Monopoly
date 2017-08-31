@@ -22,7 +22,7 @@ namespace BoardGame.Commands
             var balanceBefore = account.Balance;
             account.Assess(_balanceModification);
 
-            Summary = $"\t{_player.Name}'s balance changes from ${balanceBefore} to ${account.Balance}.";
+            Logger.Log($"\t{_player.Name}'s balance changes from ${balanceBefore} to ${account.Balance}.");
         }
     }
 }

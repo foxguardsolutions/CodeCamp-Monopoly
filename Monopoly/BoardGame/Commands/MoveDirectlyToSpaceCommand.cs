@@ -17,7 +17,7 @@ namespace BoardGame.Commands
             PlayerMover.Place(Player, _destination);
             AddCommandFrom(_destination);
 
-            Summary = $"\t{Player.Name} moves directly to {_destination.Name}.";
+            Logger.Log($"\t{Player.Name} moves directly to {_destination.Name}.");
         }
     }
 }

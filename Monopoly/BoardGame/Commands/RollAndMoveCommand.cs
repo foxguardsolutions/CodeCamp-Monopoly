@@ -21,7 +21,7 @@ namespace BoardGame.Commands
             var destination = PlayerMover.Move(Player, roll.Value);
             AddCommandFrom(destination);
 
-            Summary = $"{Environment.NewLine}{Player.Name} rolls {roll.Value} and moves to {destination.Name}.";
+            Logger.Log($"{Environment.NewLine}{Player.Name} rolls {roll.Value} and moves to {destination.Name}.");
         }
     }
 }

@@ -23,7 +23,7 @@ namespace BoardGame.Commands
             SubsequentCommands.Add(paymentCommand);
             _property.Owner = _player;
 
-            Summary = $"\t{_player.Name} purchases the property for ${_property.PurchasePrice}.";
+            Logger.Log($"\t{_player.Name} purchases the property for ${_property.PurchasePrice}.");
         }
     }
 }
