@@ -11,7 +11,8 @@ namespace BoardGame.Commands
         private readonly IRentCalculator _rentCalculator;
         private readonly IPaymentCommandFactory _paymentCommandFactory;
 
-        public AssessRentCommand(IPlayer player, IProperty property, IRentCalculator rentCalculator, IPaymentCommandFactory paymentCommandFactory)
+        public AssessRentCommand(IPlayer player, IProperty property, IRentCalculator rentCalculator, IPaymentCommandFactory paymentCommandFactory, ICommandLogger logger)
+            : base(logger)
         {
             _player = player;
             _property = property;

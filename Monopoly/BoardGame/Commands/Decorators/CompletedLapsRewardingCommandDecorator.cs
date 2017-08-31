@@ -23,6 +23,7 @@ namespace BoardGame.Commands.Decorators
             ICommand decoratedCommand,
             ILapCounter lapCounter,
             ICommandFactory rewardCommandFactory)
+            : base(decoratedCommand.Logger)
         {
             _player = player;
             _decoratedCommand = decoratedCommand;

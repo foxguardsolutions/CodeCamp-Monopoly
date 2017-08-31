@@ -39,14 +39,6 @@ namespace BoardGame.Tests.CommandsTests.DecoratorsTests
         }
 
         [Test]
-        public void GetSummary_GetsSummaryFromDecoratedCommand()
-        {
-            var summary = DecoratorCommand.Summary;
-
-            MockDecoratedCommand.Verify(dc => dc.Summary);
-        }
-
-        [Test]
         public void GetSubsequentCommands_GetsSubsequentCommandsFromDecoratedCommand()
         {
             DecoratorCommand.GetSubsequentCommands();

@@ -6,7 +6,6 @@ using BoardGame.Commands.Decorators;
 using Moq;
 using NUnit.Framework;
 using Ploeh.AutoFixture;
-using Ploeh.AutoFixture.AutoMoq;
 
 using Tests.Support.Extensions;
 using UserInterface;
@@ -16,30 +15,34 @@ namespace BoardGame.Tests.CommandsTests.DecoratorsTests
     public class VerboseCommandDecoratorTests : CommandDecoratorTests
     {
         private Mock<ITextWriter> _mockTextWriter;
+        private Mock<ICommandLogger> _mockCommandLogger;
 
         protected override void SetUpDecoratorDependencies()
         {
             _mockTextWriter = Fixture.Mock<ITextWriter>();
+            _mockCommandLogger = Fixture.Mock<ICommandLogger>();
+            MockDecoratedCommand.Setup(dc => dc.Logger)
+                .Returns(_mockCommandLogger.Object);
         }
 
         [Test]
-        public void Execute_GivenDecoratedCommandHasSummary_WritesSummaryToTextWriter()
+        public void Execute_GivenDecoratedCommandLogIsNotEmpty_WritesSummaryToTextWriter()
         {
-            Given_DecoratedCommandHasSummary();
+            Given_DecoratedCommandLogIsNotEmpty();
 
             DecoratorCommand.Execute();
 
-            _mockTextWriter.Verify(tw => tw.WriteLine(It.IsAny<string>()));
+            _mockTextWriter.Verify(tw => tw.Write(It.IsAny<string>()));
         }
 
         [Test]
         public void Execute_GivenDecoratedCommandHasNoSummary_DoesNotWriteToTextWriter()
         {
-            Given_DecoratedCommandHasNoSummary();
+            Given_DecoratedCommandLoggerIsEmpty();
 
             DecoratorCommand.Execute();
 
-            _mockTextWriter.Verify(tw => tw.WriteLine(It.IsAny<string>()), Times.Never);
+            _mockTextWriter.Verify(tw => tw.Write(It.IsAny<string>()), Times.Never);
         }
 
         [Test]
@@ -56,14 +59,14 @@ namespace BoardGame.Tests.CommandsTests.DecoratorsTests
             return Fixture.Create<VerboseCommandDecorator>();
         }
 
-        private void Given_DecoratedCommandHasSummary()
+        private void Given_DecoratedCommandLogIsNotEmpty()
         {
-            MockDecoratedCommand.Setup(dc => dc.Summary).ReturnsUsingFixture(Fixture);
+            _mockCommandLogger.Setup(l => l.IsEmpty).Returns(false);
         }
 
-        private void Given_DecoratedCommandHasNoSummary()
+        private void Given_DecoratedCommandLoggerIsEmpty()
         {
-            MockDecoratedCommand.Setup(dc => dc.Summary).Returns(default(string));
+            _mockCommandLogger.Setup(l => l.IsEmpty).Returns(true);
         }
     }
 }

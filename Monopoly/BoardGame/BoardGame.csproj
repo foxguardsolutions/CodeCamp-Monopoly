@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="Boards\IBoardWithEnd.cs" />
     <Compile Include="Commands\AssessRentCommand.cs" />
+    <Compile Include="Commands\CommandLogger.cs" />
     <Compile Include="Commands\Decorators\MonadicCommandFactoryDecorator.cs" />
     <Compile Include="Commands\Decorators\VerboseCommandDecorator.cs" />
     <Compile Include="Commands\Factories\DepositCommandFactory.cs" />
@@ -58,6 +59,7 @@
     <Compile Include="Commands\Factories\PaymentCommandFactory.cs" />
     <Compile Include="Commands\Decorators\CompletedLapsRewardingCommandFactoryDecorator.cs" />
     <Compile Include="Commands\Factories\WithdrawalCommandFactory.cs" />
+    <Compile Include="Commands\ICommandLogger.cs" />
     <Compile Include="Commands\ICommandQueue.cs" />
     <Compile Include="Commands\Factories\MortgageOptionCommandFactory.cs" />
     <Compile Include="Commands\MortgageOptionCommand.cs" />

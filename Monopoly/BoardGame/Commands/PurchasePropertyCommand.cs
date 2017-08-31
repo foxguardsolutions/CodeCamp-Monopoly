@@ -9,7 +9,8 @@ namespace BoardGame.Commands
         private readonly IProperty _property;
         private readonly IPaymentCommandFactory _paymentCommandFactory;
 
-        public PurchasePropertyCommand(IPlayer player, IProperty property, IPaymentCommandFactory paymentCommandFactory)
+        public PurchasePropertyCommand(IPlayer player, IProperty property, IPaymentCommandFactory paymentCommandFactory, ICommandLogger logger)
+            : base(logger)
         {
             _player = player;
             _property = property;

@@ -6,8 +6,8 @@ namespace BoardGame.Commands
     {
         private readonly ISpace _destination;
 
-        public MoveDirectlyToSpaceCommand(IPlayer player, IPlayerMover playerMover, ISpace destination)
-            : base(player, playerMover)
+        public MoveDirectlyToSpaceCommand(IPlayer player, IPlayerMover playerMover, ISpace destination, ICommandLogger logger)
+            : base(player, playerMover, logger)
         {
             _destination = destination;
         }

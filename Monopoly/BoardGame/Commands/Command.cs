@@ -4,11 +4,12 @@ namespace BoardGame.Commands
 {
     public abstract class Command : ICommand
     {
-        public virtual string Summary { get; protected set; }
+        public ICommandLogger Logger { get; }
         protected ICollection<ICommand> SubsequentCommands { get; }
 
-        protected Command()
+        protected Command(ICommandLogger logger)
         {
+            Logger = logger;
             SubsequentCommands = new List<ICommand>();
         }
 

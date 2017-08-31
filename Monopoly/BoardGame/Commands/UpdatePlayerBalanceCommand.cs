@@ -8,7 +8,8 @@ namespace BoardGame.Commands
         private readonly IAccountRegistry _accounts;
         private readonly IBalanceModification _balanceModification;
 
-        public UpdatePlayerBalanceCommand(IPlayer player, IAccountRegistry accounts, IBalanceModification balanceModification)
+        public UpdatePlayerBalanceCommand(IPlayer player, IAccountRegistry accounts, IBalanceModification balanceModification, ICommandLogger logger)
+            : base(logger)
         {
             _player = player;
             _accounts = accounts;

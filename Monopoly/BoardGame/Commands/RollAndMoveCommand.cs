@@ -9,8 +9,8 @@ namespace BoardGame.Commands
     {
         private readonly IDice _dice;
 
-        public RollAndMoveCommand(IPlayer player, IPlayerMover playerMover, IDice dice)
-            : base(player, playerMover)
+        public RollAndMoveCommand(IPlayer player, IPlayerMover playerMover, IDice dice, ICommandLogger logger)
+            : base(player, playerMover, logger)
         {
             _dice = dice;
         }

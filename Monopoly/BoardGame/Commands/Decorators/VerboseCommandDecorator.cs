@@ -10,9 +10,8 @@ namespace BoardGame.Commands.Decorators
         private readonly ICommand _decoratedCommand;
         private readonly ITextWriter _textWriter;
 
-        public override string Summary => _decoratedCommand.Summary;
-
         public VerboseCommandDecorator(ICommand decoratedCommand, ITextWriter textWriter)
+            : base(decoratedCommand.Logger)
         {
             _decoratedCommand = decoratedCommand;
             _textWriter = textWriter;
@@ -22,8 +21,8 @@ namespace BoardGame.Commands.Decorators
         {
             _decoratedCommand.Execute();
 
-            if (_decoratedCommand.Summary != default(string))
-                _textWriter.WriteLine(_decoratedCommand.Summary);
+            if (!Logger.IsEmpty)
+                _textWriter.Write(Logger.Get());
         }
 
         public override IEnumerable<ICommand> GetSubsequentCommands()

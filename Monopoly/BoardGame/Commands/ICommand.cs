@@ -4,7 +4,7 @@ namespace BoardGame.Commands
 {
     public interface ICommand
     {
-        string Summary { get; }
+        ICommandLogger Logger { get; }
         void Execute();
         IEnumerable<ICommand> GetSubsequentCommands();
     }

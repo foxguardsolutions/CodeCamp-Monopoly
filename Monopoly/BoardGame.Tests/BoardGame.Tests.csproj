@@ -66,6 +66,7 @@
     <Compile Include="BoardsTests\DirectedCycleBoardTests.cs" />
     <Compile Include="BoardsTests\DirectedPathBoardTests.cs" />
     <Compile Include="CommandsTests\AssessRentCommandTests.cs" />
+    <Compile Include="CommandsTests\CommandLoggerTests.cs" />
     <Compile Include="CommandsTests\DecoratorsTests\CommandDecoratorTests.cs" />
     <Compile Include="CommandsTests\DecoratorsTests\MonadicCommandFactoryDecoratorTests.cs" />
     <Compile Include="CommandsTests\DecoratorsTests\VerboseCommandDecoratorTests.cs" />

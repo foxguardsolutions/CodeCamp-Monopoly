@@ -138,6 +138,8 @@ namespace Monopoly
 
         private static void LoadGeneralCommands(ContainerBuilder builder)
         {
+            builder.RegisterType<CommandLogger>().As<ICommandLogger>();
+
             builder.RegisterGeneric(typeof(MonadicCommandFactoryDecorator<>)).AsSelf();
             builder.RegisterGeneric(typeof(MonadicCommandFactory<>)).AsSelf();
             builder.RegisterGeneric(typeof(DyadicCommandFactory<,>)).AsSelf();
