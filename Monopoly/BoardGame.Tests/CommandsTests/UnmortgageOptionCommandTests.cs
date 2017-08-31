@@ -11,7 +11,7 @@ using Tests.Support;
 using Tests.Support.Extensions;
 using UserInterface.Choices;
 
-using static BoardGame.RealEstate.Choices.UnmortgageProperty;
+using static BoardGame.RealEstate.Choices.UnmortgagePropertyChoice;
 
 namespace BoardGame.Tests.CommandsTests
 {
@@ -44,7 +44,7 @@ namespace BoardGame.Tests.CommandsTests
             _command.Execute();
 
             _mockOptionSelector.Verify(
-                os => os.ChooseOption(It.IsAny<UnmortgageProperty>(), It.IsAny<string>()),
+                os => os.ChooseOption(It.IsAny<UnmortgagePropertyChoice>(), It.IsAny<string>()),
                 Times.Never);
         }
 
@@ -67,7 +67,7 @@ namespace BoardGame.Tests.CommandsTests
             _command.Execute();
 
             _mockOptionSelector.Verify(
-                os => os.ChooseOption(It.IsAny<UnmortgageProperty>(), It.IsAny<string>()),
+                os => os.ChooseOption(It.IsAny<UnmortgagePropertyChoice>(), It.IsAny<string>()),
                 Times.Never);
         }
 
@@ -132,9 +132,9 @@ namespace BoardGame.Tests.CommandsTests
             Given_OptionSelectorReturns(No);
         }
 
-        private void Given_OptionSelectorReturns(UnmortgageProperty optionSelected)
+        private void Given_OptionSelectorReturns(UnmortgagePropertyChoice optionSelected)
         {
-            _mockOptionSelector.Setup(os => os.ChooseOption(It.IsAny<UnmortgageProperty>(), It.IsAny<string>()))
+            _mockOptionSelector.Setup(os => os.ChooseOption(It.IsAny<UnmortgagePropertyChoice>(), It.IsAny<string>()))
                 .Returns(optionSelected);
         }
 

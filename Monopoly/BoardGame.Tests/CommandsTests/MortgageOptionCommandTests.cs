@@ -11,7 +11,7 @@ using Tests.Support;
 using Tests.Support.Extensions;
 using UserInterface.Choices;
 
-using static BoardGame.RealEstate.Choices.MortgageProperty;
+using static BoardGame.RealEstate.Choices.MortgagePropertyChoice;
 
 namespace BoardGame.Tests.CommandsTests
 {
@@ -44,7 +44,7 @@ namespace BoardGame.Tests.CommandsTests
             _command.Execute();
 
             _mockOptionSelector.Verify(
-                os => os.ChooseOption(It.IsAny<MortgageProperty>(), It.IsAny<string>()),
+                os => os.ChooseOption(It.IsAny<MortgagePropertyChoice>(), It.IsAny<string>()),
                 Times.Never);
         }
 
@@ -67,7 +67,7 @@ namespace BoardGame.Tests.CommandsTests
             _command.Execute();
 
             _mockOptionSelector.Verify(
-                os => os.ChooseOption(It.IsAny<MortgageProperty>(), It.IsAny<string>()),
+                os => os.ChooseOption(It.IsAny<MortgagePropertyChoice>(), It.IsAny<string>()),
                 Times.Never);
         }
 
@@ -132,9 +132,9 @@ namespace BoardGame.Tests.CommandsTests
             Given_OptionSelectorReturns(No);
         }
 
-        private void Given_OptionSelectorReturns(MortgageProperty optionSelected)
+        private void Given_OptionSelectorReturns(MortgagePropertyChoice optionSelected)
         {
-            _mockOptionSelector.Setup(os => os.ChooseOption(It.IsAny<MortgageProperty>(), It.IsAny<string>()))
+            _mockOptionSelector.Setup(os => os.ChooseOption(It.IsAny<MortgagePropertyChoice>(), It.IsAny<string>()))
                 .Returns(optionSelected);
         }
 

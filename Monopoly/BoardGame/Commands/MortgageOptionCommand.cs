@@ -2,20 +2,21 @@
 using BoardGame.RealEstate;
 using UserInterface.Choices;
 
-using static BoardGame.RealEstate.Choices.MortgageProperty;
+using static BoardGame.RealEstate.Choices.MortgagePropertyChoice;
 
 namespace BoardGame.Commands
 {
     public class MortgageOptionCommand : Command
     {
         public const uint MortgageValuePercentage = 90;
-        public const string Message = "Would you like to mortgage this property?";
+        private string Message => $"Would you like to mortgage {_property}?";
         private readonly IPlayer _player;
         private readonly IProperty _property;
         private readonly ITransactionCommandFactory _depositCommandFactory;
         private readonly IOptionSelector _optionSelector;
 
-        public MortgageOptionCommand(IPlayer player, IProperty property, ITransactionCommandFactory depositCommandFactory, IOptionSelector optionSelector)
+        public MortgageOptionCommand(IPlayer player, IProperty property, ITransactionCommandFactory depositCommandFactory, IOptionSelector optionSelector, ICommandLogger logger)
+            : base(logger)
         {
             _player = player;
             _property = property;
@@ -25,10 +26,8 @@ namespace BoardGame.Commands
 
         public override void Execute()
         {
-            if (!PropertyCanBeMortgagedByPlayer())
-                return;
-
-            if (_optionSelector.ChooseOption(defaultOption: No, message: Message) == Yes)
+            if (PropertyCanBeMortgagedByPlayer() &&
+                    _optionSelector.ChooseOption(defaultOption: No, message: Message) == Yes)
                 MortgageProperty();
         }
 
@@ -43,7 +42,7 @@ namespace BoardGame.Commands
             SubsequentCommands.Add(_depositCommandFactory.Create(_player, depositAmount));
             _property.IsMortgaged = true;
 
-            Summary = $"\t{_player.Name} mortgages property for ${depositAmount}.";
+            Logger.Log($"\t{_player.Name} mortgages property for ${depositAmount}.");
         }
 
         private uint CalculateMortgageValue()

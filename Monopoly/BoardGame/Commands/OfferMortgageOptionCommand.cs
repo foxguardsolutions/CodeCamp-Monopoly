@@ -11,7 +11,8 @@ namespace BoardGame.Commands
         private readonly IEnumerable<IPropertyGroup> _propertyGroups;
         private readonly IMortgageOptionCommandFactory _mortgageOptionCommandFactory;
 
-        public OfferMortgageOptionCommand(IPlayer player, IEnumerable<IPropertyGroup> propertyGroups, IMortgageOptionCommandFactory mortgageOptionCommandFactory)
+        public OfferMortgageOptionCommand(IPlayer player, IEnumerable<IPropertyGroup> propertyGroups, IMortgageOptionCommandFactory mortgageOptionCommandFactory, ICommandLogger logger)
+            : base(logger)
         {
             _player = player;
             _propertyGroups = propertyGroups;

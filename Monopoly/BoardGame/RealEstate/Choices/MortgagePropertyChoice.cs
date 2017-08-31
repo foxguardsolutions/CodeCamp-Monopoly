@@ -2,7 +2,7 @@
 
 namespace BoardGame.RealEstate.Choices
 {
-    public enum MortgageProperty
+    public enum MortgagePropertyChoice
     {
         [Description("No, leave property unmortgaged")]
         No,

@@ -125,8 +125,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Dice\Roll.cs" />
     <Compile Include="Play\RoundBasedEndConditionDetector.cs" />
-    <Compile Include="RealEstate\Choices\MortgageProperty.cs" />
-    <Compile Include="RealEstate\Choices\UnmortgageProperty.cs" />
+    <Compile Include="RealEstate\Choices\MortgagePropertyChoice.cs" />
+    <Compile Include="RealEstate\Choices\UnmortgagePropertyChoice.cs" />
     <Compile Include="RealEstate\IProperty.cs" />
     <Compile Include="RealEstate\IPropertyGroup.cs" />
     <Compile Include="RealEstate\PropertyGroup.cs" />
