@@ -283,16 +283,20 @@ namespace Monopoly
 
         private static void LoadPropertyGroupFactories(ContainerBuilder builder)
         {
-            builder.RegisterType<IndigoGroupFactory>().As<MonopolyPropertyGroupFactory>();
-            builder.RegisterType<SkyBlueGroupFactory>().As<MonopolyPropertyGroupFactory>();
-            builder.RegisterType<DarkOrchidGroupFactory>().As<MonopolyPropertyGroupFactory>();
-            builder.RegisterType<OrangeGroupFactory>().As<MonopolyPropertyGroupFactory>();
-            builder.RegisterType<RedGroupFactory>().As<MonopolyPropertyGroupFactory>();
-            builder.RegisterType<YellowGroupFactory>().As<MonopolyPropertyGroupFactory>();
-            builder.RegisterType<GreenGroupFactory>().As<MonopolyPropertyGroupFactory>();
-            builder.RegisterType<BlueGroupFactory>().As<MonopolyPropertyGroupFactory>();
             builder.RegisterType<RailroadGroupFactory>().As<MonopolyPropertyGroupFactory>();
             builder.RegisterType<UtilityGroupFactory>().As<MonopolyPropertyGroupFactory>();
+            builder.RegisterType<StreetGroupFactory>();
+
+            foreach (var group in new MonopolyStreetGroups())
+                RegisterStreetGroup(builder, group.Value);
+        }
+
+        private static void RegisterStreetGroup(ContainerBuilder builder, IEnumerable<Street> group)
+        {
+            var groupParameter = new TypedParameter(typeof(IEnumerable<Street>), group);
+            builder.Register(
+                context => context.Resolve<StreetGroupFactory>(groupParameter))
+                .As<MonopolyPropertyGroupFactory>();
         }
 
         private static void LoadRentServices(ContainerBuilder builder)
