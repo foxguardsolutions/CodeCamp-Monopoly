@@ -6,7 +6,8 @@ namespace BoardGame.Commands
     {
         protected IPlayer Player { get; }
         protected IPlayerMover PlayerMover { get; }
-        protected MoveCommand(IPlayer player, IPlayerMover playerMover)
+        protected MoveCommand(IPlayer player, IPlayerMover playerMover, ICommandLogger logger)
+            : base(logger)
         {
             Player = player;
             PlayerMover = playerMover;

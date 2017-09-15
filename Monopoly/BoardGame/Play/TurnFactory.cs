@@ -4,16 +4,16 @@ namespace BoardGame.Play
 {
     public class TurnFactory : ITurnFactory
     {
-        private readonly ICommandQueue _commandQueue;
+        private readonly ICommandQueue[] _commandQueues;
 
-        public TurnFactory(ICommandQueue commandQueue)
+        public TurnFactory(params ICommandQueue[] commandQueues)
         {
-            _commandQueue = commandQueue;
+            _commandQueues = commandQueues;
         }
 
         public Turn CreateFor(IPlayer player)
         {
-            return new Turn(player, _commandQueue);
+            return new Turn(player, _commandQueues);
         }
     }
 }

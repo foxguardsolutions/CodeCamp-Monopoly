@@ -67,6 +67,7 @@
     <Compile Include="BaseTest.cs" />
     <Compile Include="Extensions\AutoFixtureExtensions.cs" />
     <Compile Include="Extensions\EnumerableExtensions.cs" />
+    <Compile Include="Extensions\MoqExtensions.cs" />
     <Compile Include="ExtensionTests\EnumerableExtensionsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -1,4 +1,6 @@
-﻿using BoardGame.Dice;
+﻿using System;
+
+using BoardGame.Dice;
 using BoardGame.Locations;
 
 namespace BoardGame.Commands
@@ -7,8 +9,8 @@ namespace BoardGame.Commands
     {
         private readonly IDice _dice;
 
-        public RollAndMoveCommand(IPlayer player, IPlayerMover playerMover, IDice dice)
-            : base(player, playerMover)
+        public RollAndMoveCommand(IPlayer player, IPlayerMover playerMover, IDice dice, ICommandLogger logger)
+            : base(player, playerMover, logger)
         {
             _dice = dice;
         }
@@ -18,6 +20,8 @@ namespace BoardGame.Commands
             var roll = _dice.Roll();
             var destination = PlayerMover.Move(Player, roll.Value);
             AddCommandFrom(destination);
+
+            Logger.Log($"{Environment.NewLine}{Player.Name} rolls {roll.Value} and moves to {destination.Name}.");
         }
     }
 }

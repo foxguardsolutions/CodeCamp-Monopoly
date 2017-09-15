@@ -45,21 +45,37 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Boards\IBoardWithEnd.cs" />
-    <Compile Include="Commands\Factories\BalanceModificationCommandFactory.cs" />
-    <Compile Include="Commands\Factories\MoveDirectlyToSpaceCommandFactory.cs" />
-    <Compile Include="Commands\Factories\RollAndMoveCommandFactory.cs" />
-    <Compile Include="Commands\Factories\CompletedLapsRewardingCommandFactoryDecorator.cs" />
+    <Compile Include="Commands\AssessRentCommand.cs" />
+    <Compile Include="Commands\CommandLogger.cs" />
+    <Compile Include="Commands\Decorators\MonadicCommandFactoryDecorator.cs" />
+    <Compile Include="Commands\Decorators\VerboseCommandDecorator.cs" />
+    <Compile Include="Commands\Factories\DepositCommandFactory.cs" />
+    <Compile Include="Commands\Factories\DyadicCommandFactory.cs" />
+    <Compile Include="Commands\Factories\IPaymentCommandFactory.cs" />
+    <Compile Include="Commands\Factories\ITransactionCommandFactory.cs" />
+    <Compile Include="Commands\Factories\LandOnPropertyCommandFactory.cs" />
+    <Compile Include="Commands\Factories\MonadicCommandFactory.cs" />
+    <Compile Include="Commands\Factories\IMortgageOptionCommandFactory.cs" />
+    <Compile Include="Commands\Factories\PaymentCommandFactory.cs" />
+    <Compile Include="Commands\Decorators\CompletedLapsRewardingCommandFactoryDecorator.cs" />
+    <Compile Include="Commands\Factories\WithdrawalCommandFactory.cs" />
+    <Compile Include="Commands\ICommandLogger.cs" />
     <Compile Include="Commands\ICommandQueue.cs" />
+    <Compile Include="Commands\Factories\MortgageOptionCommandFactory.cs" />
+    <Compile Include="Commands\MortgageOptionCommand.cs" />
     <Compile Include="Commands\MoveCommand.cs" />
     <Compile Include="Commands\MoveDirectlyToSpaceCommand.cs" />
-    <Compile Include="Commands\CompletedLapsRewardingCommandDecorator.cs" />
+    <Compile Include="Commands\Decorators\CompletedLapsRewardingCommandDecorator.cs" />
     <Compile Include="Commands\Command.cs" />
     <Compile Include="Commands\ICommand.cs" />
     <Compile Include="Commands\Factories\ICommandFactory.cs" />
+    <Compile Include="Commands\OfferMortgageOptionCommand.cs" />
+    <Compile Include="Commands\PurchasePropertyCommand.cs" />
     <Compile Include="Commands\RollAndMoveCommand.cs" />
     <Compile Include="Boards\DirectedCycleBoard.cs" />
     <Compile Include="Boards\DirectedPathBoard.cs" />
     <Compile Include="Boards\IBoard.cs" />
+    <Compile Include="Commands\UnmortgageOptionCommand.cs" />
     <Compile Include="Construction\IGameStateConfigurationInitializer.cs" />
     <Compile Include="Construction\GameStateConfigurationInitializer.cs" />
     <Compile Include="Commands\SelfExtendingCommandQueue.cs" />
@@ -71,6 +87,8 @@
     <Compile Include="Construction\PlayerFactory.cs" />
     <Compile Include="Construction\SingleSpaceInitialPlacementHandler.cs" />
     <Compile Include="Construction\SpaceCommandFactoryBinder.cs" />
+    <Compile Include="Dice\DiceWithCacheDecorator.cs" />
+    <Compile Include="Dice\IDiceWithCache.cs" />
     <Compile Include="Dice\PairOfSixSidedDice.cs" />
     <Compile Include="Extensions\MathExtensions.cs" />
     <Compile Include="ISpace.cs" />
@@ -84,6 +102,10 @@
     <Compile Include="Money\IAccountFactory.cs" />
     <Compile Include="Money\IAccountRegistry.cs" />
     <Compile Include="Money\IBalanceModification.cs" />
+    <Compile Include="Money\IPayment.cs" />
+    <Compile Include="Money\IPaymentFactory.cs" />
+    <Compile Include="Money\FixedAmountPayment.cs" />
+    <Compile Include="Money\FixedAmountPaymentFactory.cs" />
     <Compile Include="Money\ProportionalPenaltyWithCap.cs" />
     <Compile Include="Play\IPlayCoordinator.cs" />
     <Compile Include="Play\PlayCoordinator.cs" />
@@ -103,6 +125,18 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Dice\Roll.cs" />
     <Compile Include="Play\RoundBasedEndConditionDetector.cs" />
+    <Compile Include="RealEstate\Choices\MortgagePropertyChoice.cs" />
+    <Compile Include="RealEstate\Choices\UnmortgagePropertyChoice.cs" />
+    <Compile Include="RealEstate\IProperty.cs" />
+    <Compile Include="RealEstate\IPropertyGroup.cs" />
+    <Compile Include="RealEstate\PropertyGroup.cs" />
+    <Compile Include="RealEstate\Rent\IRentCalculator.cs" />
+    <Compile Include="RealEstate\Rent\IRentStrategy.cs" />
+    <Compile Include="RealEstate\Property.cs" />
+    <Compile Include="RealEstate\Rent\RailroadRentStrategy.cs" />
+    <Compile Include="RealEstate\Rent\RentCalculator.cs" />
+    <Compile Include="RealEstate\Rent\StreetRentStrategy.cs" />
+    <Compile Include="RealEstate\Rent\UtilityRentStrategy.cs" />
     <Compile Include="Runner.cs" />
     <Compile Include="Play\Turn.cs" />
     <Compile Include="Play\TurnFactory.cs" />
@@ -120,6 +154,10 @@
     <ProjectReference Include="..\Shuffler\Shuffler.csproj">
       <Project>{5628FDCE-3D9F-4366-B9D7-F226F97DB9C3}</Project>
       <Name>Shuffler</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UserInterface\UserInterface.csproj">
+      <Project>{E181931B-5D34-44C5-A02B-B7604F42DFCC}</Project>
+      <Name>UserInterface</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

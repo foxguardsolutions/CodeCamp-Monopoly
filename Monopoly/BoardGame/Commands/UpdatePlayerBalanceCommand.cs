@@ -8,7 +8,8 @@ namespace BoardGame.Commands
         private readonly IAccountRegistry _accounts;
         private readonly IBalanceModification _balanceModification;
 
-        public UpdatePlayerBalanceCommand(IPlayer player, IAccountRegistry accounts, IBalanceModification balanceModification)
+        public UpdatePlayerBalanceCommand(IPlayer player, IAccountRegistry accounts, IBalanceModification balanceModification, ICommandLogger logger)
+            : base(logger)
         {
             _player = player;
             _accounts = accounts;
@@ -18,7 +19,10 @@ namespace BoardGame.Commands
         public override void Execute()
         {
             var account = _accounts.GetAccount(_player);
+            var balanceBefore = account.Balance;
             account.Assess(_balanceModification);
+
+            Logger.Log($"\t{_player.Name}'s balance changes from ${balanceBefore} to ${account.Balance}.");
         }
     }
 }

@@ -38,6 +38,7 @@ namespace Tests.Support.Extensions
         {
             var mocks = fixture.CreateMany<Mock<T>>();
             fixture.Register(() => mocks.Select(mock => mock.Object));
+            fixture.Register(() => mocks.Select(mock => mock.Object).ToArray());
             return mocks;
         }
     }

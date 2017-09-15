@@ -50,6 +50,9 @@
       <HintPath>..\packages\AutoFixture.3.50.2\lib\net40\Ploeh.AutoFixture.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Ploeh.AutoFixture.AutoMoq, Version=3.50.2.0, Culture=neutral, PublicKeyToken=b24654c590009d4f, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoFixture.AutoMoq.3.50.2\lib\net40\Ploeh.AutoFixture.AutoMoq.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -62,20 +65,35 @@
   <ItemGroup>
     <Compile Include="BoardsTests\DirectedCycleBoardTests.cs" />
     <Compile Include="BoardsTests\DirectedPathBoardTests.cs" />
+    <Compile Include="CommandsTests\AssessRentCommandTests.cs" />
+    <Compile Include="CommandsTests\CommandLoggerTests.cs" />
+    <Compile Include="CommandsTests\DecoratorsTests\CommandDecoratorTests.cs" />
+    <Compile Include="CommandsTests\DecoratorsTests\MonadicCommandFactoryDecoratorTests.cs" />
+    <Compile Include="CommandsTests\DecoratorsTests\VerboseCommandDecoratorTests.cs" />
+    <Compile Include="CommandsTests\FactoriesTests\DepositCommandFactoryTests.cs" />
+    <Compile Include="CommandsTests\FactoriesTests\DyadicCommandFactoryTests.cs" />
+    <Compile Include="CommandsTests\FactoriesTests\LandOnPropertyCommandFactoryTests.cs" />
+    <Compile Include="CommandsTests\FactoriesTests\MonadicCommandFactoryTests.cs" />
+    <Compile Include="CommandsTests\FactoriesTests\MortgageOptionCommandFactoryTests.cs" />
+    <Compile Include="CommandsTests\MortgageOptionCommandTests.cs" />
+    <Compile Include="CommandsTests\FactoriesTests\PaymentCommandFactoryTests.cs" />
+    <Compile Include="CommandsTests\FactoriesTests\TransactionCommandFactoryTests.cs" />
+    <Compile Include="CommandsTests\FactoriesTests\WithdrawalCommandFactoryTests.cs" />
+    <Compile Include="CommandsTests\OfferMortgageOptionCommandTests.cs" />
+    <Compile Include="CommandsTests\PurchasePropertyCommandTests.cs" />
+    <Compile Include="CommandsTests\UnmortgageOptionCommandTests.cs" />
     <Compile Include="ConstructionTests\GameStateConfigurationInitializerTests.cs" />
-    <Compile Include="CommandsTests\FactoriesTests\BalanceModificationCommandFactoryTests.cs" />
-    <Compile Include="CommandsTests\FactoriesTests\MoveDirectlyToSpaceCommandFactoryTests.cs" />
-    <Compile Include="CommandsTests\FactoriesTests\CompletedLapsRewardingCommandFactoryDecoratorTests.cs" />
-    <Compile Include="CommandsTests\FactoriesTests\RollAndMoveCommandFactoryTests.cs" />
+    <Compile Include="CommandsTests\DecoratorsTests\CompletedLapsRewardingCommandFactoryDecoratorTests.cs" />
     <Compile Include="CommandsTests\MoveCommandTests.cs" />
     <Compile Include="CommandsTests\MoveDirectlyToSpaceCommandTests.cs" />
     <Compile Include="CommandsTests\RollAndMoveCommandTests.cs" />
-    <Compile Include="CommandsTests\CompletedLapsRewardingCommandDecoratorTests.cs" />
+    <Compile Include="CommandsTests\DecoratorsTests\CompletedLapsRewardingCommandDecoratorTests.cs" />
     <Compile Include="CommandsTests\SelfExtendingCommandQueueTests.cs" />
     <Compile Include="CommandsTests\UpdatePlayerBalanceCommandTests.cs" />
     <Compile Include="ConstructionTests\PlayerFactoryTests.cs" />
     <Compile Include="ConstructionTests\SingleSpaceInitialPlacementHandlerTests.cs" />
     <Compile Include="ConstructionTests\SpaceCommandFactoryBinderTests.cs" />
+    <Compile Include="DiceTests\DiceWithCacheDecoratorTests.cs" />
     <Compile Include="DiceTests\PairOfSixSidedDiceTests.cs" />
     <Compile Include="ConstructionTests\PlayCoordinatorFactoryTests.cs" />
     <Compile Include="BoardsTests\LapCounterTests.cs" />
@@ -85,7 +103,15 @@
     <Compile Include="MoneyTests\AccountRegistryTests.cs" />
     <Compile Include="MoneyTests\AccountTests.cs" />
     <Compile Include="MoneyTests\FixedBalanceModificationTests.cs" />
+    <Compile Include="MoneyTests\FixedAmountPaymentFactoryTests.cs" />
+    <Compile Include="MoneyTests\FixedAmountPaymentTests.cs" />
     <Compile Include="MoneyTests\ProportionalPenaltyWithCapTests.cs" />
+    <Compile Include="RealEstateTests\PropertyGroupTests.cs" />
+    <Compile Include="RealEstateTests\PropertyTests.cs" />
+    <Compile Include="RealEstateTests\RentTests\RailroadRentStrategyTests.cs" />
+    <Compile Include="RealEstateTests\RentTests\RentCalculatorTests.cs" />
+    <Compile Include="RealEstateTests\RentTests\StreetRentStrategyTests.cs" />
+    <Compile Include="RealEstateTests\RentTests\UtilityRentStrategyTests.cs" />
     <Compile Include="RunnerTests.cs" />
     <Compile Include="PlayTests\PlayCoordinatorTests.cs" />
     <Compile Include="ConstructionTests\PlayerCountConstraintTests.cs" />
@@ -121,6 +147,10 @@
     <ProjectReference Include="..\Tests.Support\Tests.Support.csproj">
       <Project>{1ff0a837-b081-48e2-a62a-1994dc1970be}</Project>
       <Name>Tests.Support</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UserInterface\UserInterface.csproj">
+      <Project>{E181931B-5D34-44C5-A02B-B7604F42DFCC}</Project>
+      <Name>UserInterface</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
